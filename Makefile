@@ -3,7 +3,7 @@ CXX = g++
 CXXFLAGS = -fPIC -g3 -Iinclude -Wall
 INCDIR = include
 LIBDIR = lib
-LIBS = `pkg-config --libs allegro-5.1` -L${LIBDIR} -lal5poly
+LIBS = `pkg-config --libs allegro-5.1`
 MKDIR = mkdir -p
 OBJDIR = obj
 REMOVE = rm -fR
@@ -32,15 +32,15 @@ LIBOBJS = ${OBJDIR}/AnimationException.o \
 		  ${OBJDIR}/Renderer.o
 PROGRAM = ${BINDIR}/al5polytut
 
-.PHONY: clean default
+.PHONY: all clean
 
-default: ${BINDIR} ${LIBDIR} ${OBJDIR} ${LIBRARY} ${PROGRAM} 
+all: ${BINDIR} ${LIBDIR} ${OBJDIR} ${LIBRARY} ${PROGRAM} 
 
 clean:
 	${REMOVE} ${BINDIR} ${LIBDIR} ${OBJDIR}
 
 ${LIBRARY}: ${LIBOBJS}
-	${CXX} -shared -Wl,-soname,${SONAME} -o $@ $?
+	${CXX} -shared -Wl,-soname,${SONAME} -o $@ $? ${LIBS}
 	${SYMLINK} ${SONAME}.${VERSION} ${LIBDIR}/${SONAME}
 
 ${BINDIR}:
@@ -53,7 +53,7 @@ ${OBJDIR}:
 	${MKDIR} $@
 
 ${PROGRAM}: ${OBJDIR}/main.o $(LIBRARY)
-	${CXX} -o $@ $< ${LIBS}
+	${CXX} -o $@ $< ${LIBS} -L${LIBDIR} -lal5poly
 
 ${OBJDIR}/AnimationException.o: ${SRCDIR}/AnimationException.cpp ${INCDIR}/AnimationException.hpp
 	${CXX} ${CXXFLAGS} `pkg-config --cflags allegro-5.1` -c -o $@ $<

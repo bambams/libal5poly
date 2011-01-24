@@ -94,17 +94,17 @@ int main(int argc, char * argv[]) try
 
             if(ticks == 400)
             {
-                player.setCurrentAnimation("brg");
+                player.setCurrentAnimation("br");
                 player.beginAnimation(5, *gameTime);
             }
             else if(ticks == 200)
             {
-                player.setCurrentAnimation("gbr");
+                player.setCurrentAnimation("gb");
                 player.beginAnimation(15, *gameTime);
             }
             else if(ticks == 10)
             {
-                player.setCurrentAnimation("rgb");
+                player.setCurrentAnimation("rg");
                 player.beginAnimation(30, *gameTime);
             }
 
@@ -282,35 +282,32 @@ IAnimation::StringMap loadAnimations(
             boxHeight,
             al_map_rgb(0, 0, 255)));
 
-    ALLEGRO_BITMAP_Ptr_Vector rgb_sprites;
+    ALLEGRO_BITMAP_Ptr_Vector rg_sprites;
 
-    rgb_sprites.push_back(redBox);
-    rgb_sprites.push_back(blueBox);
-    rgb_sprites.push_back(greenBox);
+    rg_sprites.push_back(redBox);
+    rg_sprites.push_back(greenBox);
 
-    IAnimation::Ptr rgb_animation(new Animation(rgb_sprites));
+    IAnimation::Ptr rg_animation(new Animation(rg_sprites));
 
-    ALLEGRO_BITMAP_Ptr_Vector gbr_sprites;
+    ALLEGRO_BITMAP_Ptr_Vector gb_sprites;
 
-    gbr_sprites.push_back(greenBox);
-    gbr_sprites.push_back(blueBox);
-    gbr_sprites.push_back(redBox);
+    gb_sprites.push_back(greenBox);
+    gb_sprites.push_back(blueBox);
 
-    IAnimation::Ptr gbr_animation(new Animation(gbr_sprites));
+    IAnimation::Ptr gb_animation(new Animation(gb_sprites));
 
-    ALLEGRO_BITMAP_Ptr_Vector brg_sprites;
+    ALLEGRO_BITMAP_Ptr_Vector br_sprites;
 
-    brg_sprites.push_back(blueBox);
-    brg_sprites.push_back(redBox);
-    brg_sprites.push_back(greenBox);
+    br_sprites.push_back(blueBox);
+    br_sprites.push_back(redBox);
 
-    IAnimation::Ptr brg_animation(new Animation(brg_sprites));
+    IAnimation::Ptr br_animation(new Animation(br_sprites));
 
     IAnimation::StringMap animations;
 
-    animations.insert(std::make_pair("rgb", rgb_animation));
-    animations.insert(std::make_pair("gbr", gbr_animation));
-    animations.insert(std::make_pair("brg", brg_animation));
+    animations.insert(std::make_pair("rg", rg_animation));
+    animations.insert(std::make_pair("gb", gb_animation));
+    animations.insert(std::make_pair("br", br_animation));
 
     return animations;
 }

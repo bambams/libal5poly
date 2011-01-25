@@ -32,12 +32,15 @@ LIBOBJS = ${OBJDIR}/AnimationException.o \
 		  ${OBJDIR}/Renderer.o
 PROGRAM = ${BINDIR}/al5polytut
 
-.PHONY: all clean
+.PHONY: all clean run
 
 all: ${BINDIR} ${LIBDIR} ${OBJDIR} ${LIBRARY} ${PROGRAM} 
 
 clean:
 	${REMOVE} ${BINDIR} ${LIBDIR} ${OBJDIR}
+
+run: all
+	LD_LIBRARY_PATH=${LIBDIR} ${PROGRAM}
 
 ${LIBRARY}: ${LIBOBJS}
 	${CXX} -shared -Wl,-soname,${SONAME} -o $@ $? ${LIBS}

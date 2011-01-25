@@ -9,7 +9,7 @@ OBJDIR = obj
 REMOVE = rm -fR
 SONAME = libal5poly.so
 SRCDIR = src
-SYMLINK = ln -s
+SYMLINK = ln -fs
 VERSION = 1
 
 LIBRARY = ${LIBDIR}/${SONAME}.${VERSION}

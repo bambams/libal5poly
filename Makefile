@@ -12,6 +12,7 @@ SRCDIR = src
 SYMLINK = ln -fs
 VERSION = 1
 
+DIRS = ${BINDIR} ${LIBDIR} ${OBJDIR} ${OBJDIR}/example
 LIBRARY = ${LIBDIR}/lib${SONAME}.${VERSION}.so
 LIBOBJS = ${OBJDIR}/AnimationException.o \
 		  ${OBJDIR}/Animation.o ${OBJDIR}/Camera.o \
@@ -30,32 +31,32 @@ LIBOBJS = ${OBJDIR}/AnimationException.o \
 		  ${OBJDIR}/PlayerException.o \
 		  ${OBJDIR}/Player.o \
 		  ${OBJDIR}/Renderer.o
-PROGRAM = ${BINDIR}/al5polytut
+EXAMPLE = ${BINDIR}/al5poly_ex
 
-.PHONY: all clean run
+.PHONY: all clean dirs example library run
 
-all: ${BINDIR} ${LIBDIR} ${OBJDIR} ${LIBRARY} ${PROGRAM} 
+all: library example
+
+library: dirs ${LIBDIR} ${OBJDIR} ${LIBRARY}
+
+example: library ${EXAMPLE} 
 
 clean:
 	${REMOVE} ${BINDIR} ${LIBDIR} ${OBJDIR}
 
-run: all
-	LD_LIBRARY_PATH=${LIBDIR} ${PROGRAM}
+dirs:
+	${MKDIR} ${DIRS}
+
+example: library ${EXAMPLE}
+
+run: example all
+	LD_LIBRARY_PATH=${LIBDIR} ${EXAMPLE}
 
 ${LIBRARY}: ${LIBOBJS}
 	${CXX} -shared -Wl,-soname,lib${SONAME}.so -o $@ $? ${LIBS}
 	${SYMLINK} lib${SONAME}.${VERSION}.so ${LIBDIR}/lib${SONAME}.so
 
-${BINDIR}:
-	${MKDIR} $@
-
-${LIBDIR}:
-	${MKDIR} $@
-
-${OBJDIR}:
-	${MKDIR} $@
-
-${PROGRAM}: ${OBJDIR}/main.o $(LIBRARY)
+${EXAMPLE}: ${OBJDIR}/example/main.o $(LIBRARY)
 	${CXX} -o $@ $< ${LIBS} -L${LIBDIR} -lal5poly
 
 ${OBJDIR}/AnimationException.o: ${SRCDIR}/AnimationException.cpp ${INCDIR}/AnimationException.hpp
@@ -100,7 +101,7 @@ ${OBJDIR}/IRenderable.o: ${SRCDIR}/IRenderable.cpp ${INCDIR}/IRenderable.hpp
 ${OBJDIR}/IRenderer.o: ${SRCDIR}/IRenderer.cpp ${INCDIR}/IRenderer.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/main.o: ${SRCDIR}/main.cpp
+${OBJDIR}/example/main.o: ${SRCDIR}/example/main.cpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 ${OBJDIR}/NullDestructor.o: ${SRCDIR}/NullDestructor.cpp ${INCDIR}/NullDestructor.hpp

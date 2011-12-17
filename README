@@ -1,0 +1,13 @@
+libal5poly is basically a polymorphic game framework built on Allegro 5.
+It is intended to be abstract enough to support multiple backends, but
+Allegro 5 is the only planned backend at this time. The name may change if
+that changes. Currently it is very simple. It was originally written as an
+example of program design for a thread on the http://www.allegro.cc/
+forums.
+
+It's not really ready for public use yet, but it is licensed under the
+terms of the GNU GPL version 2 or higher; so you may use it under those
+terms if you want.
+
+Documentation is nonexistent because it's a WIP... xD
+

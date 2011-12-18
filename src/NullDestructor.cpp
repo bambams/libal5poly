@@ -18,10 +18,13 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "NullDestructor.hpp"
+#include "al5poly/NullDestructor.hpp"
 
-template<typename T>
-void NullDestructor(const T * const t)
+namespace al5poly
 {
+    template<typename T>
+    void NullDestructor(const T * const t)
+    {
+    }
 }
 

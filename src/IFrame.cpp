@@ -18,7 +18,10 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "IFrame.hpp"
+#include "al5poly/IFrame.hpp"
 
-IFrame::~IFrame(void) {}
+namespace al5poly
+{
+    IFrame::~IFrame(void) {}
+}
 

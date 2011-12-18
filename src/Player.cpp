@@ -18,64 +18,67 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Player.hpp"
+#include "al5poly/Player.hpp"
 
-Player::Player(const IAnimation::StringMap & animations):
-    x_(0),
-    y_(0),
-    animations_(animations)
+namespace al5poly
 {
-}
-
-void Player::beginAnimation(
-        const int ticksPerFrame,
-        const IGameTime & gameTime)
-{
-    if(!this->currentAnimation_)
-        PlayerException("Player is not animated.").raise();
-
-    this->currentAnimation_->begin(ticksPerFrame, gameTime);
-}
-
-void Player::setCurrentAnimation(const std::string & name)
-{
-    IAnimation::StringMap::iterator match =
-            this->animations_.find(name);
-
-    if(match == this->animations_.end())
+    Player::Player(const IAnimation::StringMap & animations):
+        x_(0),
+        y_(0),
+        animations_(animations)
     {
-        PlayerException(
-                "The specified animation name is invalid.").raise();
     }
 
-    this->currentAnimation_ = (*match).second;
-}
+    void Player::beginAnimation(
+            const int ticksPerFrame,
+            const IGameTime & gameTime)
+    {
+        if(!this->currentAnimation_)
+            PlayerException("Player is not animated.").raise();
 
-IFrame::Ptr Player::getCurrentFrame(const IGameTime & gameTime) const
-{
-    if(!this->currentAnimation_)
-        PlayerException("Player is not animated.").raise();
+        this->currentAnimation_->begin(ticksPerFrame, gameTime);
+    }
 
-    return this->currentAnimation_->getCurrentFrame(gameTime);
-}
+    void Player::setCurrentAnimation(const std::string & name)
+    {
+        IAnimation::StringMap::iterator match =
+                this->animations_.find(name);
 
-int Player::getX(void) const
-{
-    return this->x_;
-}
+        if(match == this->animations_.end())
+        {
+            PlayerException(
+                    "The specified animation name is invalid.").raise();
+        }
 
-int Player::getY(void) const
-{
-    return this->y_;
-}
+        this->currentAnimation_ = (*match).second;
+    }
 
-int Player::setX(const int x)
-{
-    return this->x_ = x;
-}
+    IFrame::Ptr Player::getCurrentFrame(const IGameTime & gameTime) const
+    {
+        if(!this->currentAnimation_)
+            PlayerException("Player is not animated.").raise();
 
-int Player::setY(const int y)
-{
-    return this->y_ = y;
+        return this->currentAnimation_->getCurrentFrame(gameTime);
+    }
+
+    int Player::getX(void) const
+    {
+        return this->x_;
+    }
+
+    int Player::getY(void) const
+    {
+        return this->y_;
+    }
+
+    int Player::setX(const int x)
+    {
+        return this->x_ = x;
+    }
+
+    int Player::setY(const int y)
+    {
+        return this->y_ = y;
+    }
 }
 

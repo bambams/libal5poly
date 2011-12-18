@@ -18,33 +18,30 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef RENDERER_HPP
-    #define RENDERER_HPP
+#ifndef FRAME_HPP
+    #define FRAME_HPP
 
-class Renderer;
-
-    #include "altypedef.hpp"
-    #include "ICamera.hpp"
-    #include "IGameTime.hpp"
-    #include "IRenderer.hpp"
-
-class Renderer:
-    public IRenderer
+namespace al5poly
 {
-private:
-    ALLEGRO_DISPLAY_Ptr display_;
-public:
-    Renderer(const ALLEGRO_DISPLAY_Ptr);
+    class Frame;
+}
 
-    int getScreenX(const IRenderable &, const ICamera &) const;
-    int getScreenY(const IRenderable &, const ICamera &) const;
+    #include "al5poly/altypedef.hpp"
+    #include "al5poly/IFrame.hpp"
 
-    void paint(void) const;
-    void render(
-            const IGameTime &,
-            const ICamera &,
-            const IRenderable &);
-};
+namespace al5poly
+{
+    class Frame:
+        public IFrame
+    {
+    private:
+        ALLEGRO_BITMAP_Ptr sprite_;
+    public:
+        Frame(const ALLEGRO_BITMAP_Ptr);
+
+        ALLEGRO_BITMAP_Ptr getSprite(void) const;
+    };
+}
 
 #endif
 

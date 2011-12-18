@@ -18,20 +18,31 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef IGAMETIME_HPP
-    #define IGAMETIME_HPP
+#ifndef PLAYEREXCEPTION_HPP
+    #define PLAYEREXCEPTION_HPP
 
-    #include <boost/shared_ptr.hpp>
+    #include <string>
 
-class IGameTime
+namespace al5poly
 {
-public:
-    typedef boost::shared_ptr<IGameTime> Ptr;
+    class PlayerException;
+}
 
-    virtual ~IGameTime(void) = 0;
+    #include "al5poly/Exception.hpp"
+    #include "al5poly/IAnimation.hpp"
+    #include "al5poly/IFrame.hpp"
+    #include "al5poly/IGameTime.hpp"
+    #include "al5poly/IRenderable.hpp"
 
-    virtual int getTicks(void) const = 0;
-};
+namespace al5poly
+{
+    class PlayerException:
+        public Exception
+    {
+    public:
+        PlayerException(const std::string &);
+    };
+}
 
 #endif
 

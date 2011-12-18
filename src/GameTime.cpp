@@ -18,20 +18,23 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "GameTime.hpp"
+#include "al5poly/GameTime.hpp"
 
-GameTime::GameTime(void):
-    ticks_(0)
+namespace al5poly
 {
-}
+    GameTime::GameTime(void):
+        ticks_(0)
+    {
+    }
 
-GameTime::GameTime(int ticks):
-    ticks_(ticks)
-{
-}
+    GameTime::GameTime(int ticks):
+        ticks_(ticks)
+    {
+    }
 
-int GameTime::getTicks(void) const
-{
-    return this->ticks_;
+    int GameTime::getTicks(void) const
+    {
+        return this->ticks_;
+    }
 }
 

@@ -21,33 +21,39 @@
 #ifndef PLAYER_HPP
     #define PLAYER_HPP
 
-class Player;
-
-    #include "IAnimation.hpp"
-    #include "IFrame.hpp"
-    #include "IGameTime.hpp"
-    #include "IRenderable.hpp"
-    #include "PlayerException.hpp"
-
-class Player:
-    public IRenderable
+namespace al5poly
 {
-private:
-    int x_;
-    int y_;
-    IAnimation::StringMap animations_;
-    IAnimation::Ptr currentAnimation_;
-public:
-    Player(const IAnimation::StringMap &);
+    class Player;
+}
 
-    void beginAnimation(const int, const IGameTime &);
-    void setCurrentAnimation(const std::string &);
-    IFrame::Ptr getCurrentFrame(const IGameTime &) const;
-    int getX(void) const;
-    int getY(void) const;
-    int setX(const int);
-    int setY(const int);
-};
+    #include "al5poly/IAnimation.hpp"
+    #include "al5poly/IFrame.hpp"
+    #include "al5poly/IGameTime.hpp"
+    #include "al5poly/IRenderable.hpp"
+    #include "al5poly/PlayerException.hpp"
+
+namespace al5poly
+{
+    class Player:
+        public IRenderable
+    {
+    private:
+        int x_;
+        int y_;
+        IAnimation::StringMap animations_;
+        IAnimation::Ptr currentAnimation_;
+    public:
+        Player(const IAnimation::StringMap &);
+
+        void beginAnimation(const int, const IGameTime &);
+        void setCurrentAnimation(const std::string &);
+        IFrame::Ptr getCurrentFrame(const IGameTime &) const;
+        int getX(void) const;
+        int getY(void) const;
+        int setX(const int);
+        int setY(const int);
+    };
+}
 
 #endif
 

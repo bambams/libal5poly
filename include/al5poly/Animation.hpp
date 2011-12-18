@@ -18,31 +18,37 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EXCEPTION_HPP
-    #define EXCEPTION_HPP
+#ifndef ANIMATION_HPP
+    #define ANIMATION_HPP
 
-    #include <stdexcept>
-
-class Exception;
-
-    #include "IException.hpp"
-
-class Exception:
-    public std::exception,
-    public IException
+namespace al5poly
 {
-protected:
-    std::string message_;
-public:
-    Exception(const std::string &);
-    virtual ~Exception(void) throw();
+    class Animation;
+}
 
-    virtual std::string getMessage(void) const;
+    #include "al5poly/altypedef.hpp"
+    #include "al5poly/AnimationException.hpp"
+    #include "al5poly/Frame.hpp"
+    #include "al5poly/GameTime.hpp"
+    #include "al5poly/IAnimation.hpp"
+    #include "al5poly/IFrame.hpp"
 
-    virtual void raise(void) const;
+namespace al5poly
+{
+    class Animation:
+        public IAnimation
+    {
+    private:
+        ALLEGRO_BITMAP_Ptr_Vector sprites_;
+        GameTime startTime_;
+        int ticksPerFrame_;
+    public:
+        Animation(const ALLEGRO_BITMAP_Ptr_Vector &);
 
-    const char * what(void) const throw();
-};
+        void begin(const int, const IGameTime &);
+        IFrame::Ptr getCurrentFrame(const IGameTime &) const;
+    };
+}
 
 #endif
 

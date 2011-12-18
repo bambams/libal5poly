@@ -18,25 +18,14 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CLOCK_HPP
-    #define CLOCK_HPP
+#ifndef NULLDESTRUCTOR_HPP
+    #define NULLDESCTRUCTOR_HPP
 
-class Clock;
-
-    #include "GameTime.hpp"
-    #include "IGameTime.hpp"
-
-class Clock
+namespace al5poly
 {
-private:
-    int ticks_;
-public:
-    Clock(void);
-
-    void tick(void);
-
-    IGameTime::Ptr getGameTime(void) const;
-};
+    template<typename T>
+    void NullDestructor(const T * const);
+}
 
 #endif
 

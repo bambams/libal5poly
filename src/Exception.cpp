@@ -18,29 +18,32 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Exception.hpp"
+#include "al5poly/Exception.hpp"
 
-Exception::Exception(const std::string & message):
-    message_(message)
+namespace al5poly
 {
-    if(message.length() == 0)
-        Exception("Empty exception message.").raise();
-}
+    Exception::Exception(const std::string & message):
+        message_(message)
+    {
+        if(message.length() == 0)
+            Exception("Empty exception message.").raise();
+    }
 
-Exception::~Exception(void) throw() {}
+    Exception::~Exception(void) throw() {}
 
-std::string Exception::getMessage(void) const
-{
-    return this->message_;
-}
+    std::string Exception::getMessage(void) const
+    {
+        return this->message_;
+    }
 
-void Exception::raise(void) const
-{
-    throw *this;
-}
+    void Exception::raise(void) const
+    {
+        throw *this;
+    }
 
-const char * Exception::what(void) const throw()
-{
-    return this->getMessage().c_str();
+    const char * Exception::what(void) const throw()
+    {
+        return this->getMessage().c_str();
+    }
 }
 

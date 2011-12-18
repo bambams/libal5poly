@@ -18,31 +18,34 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Camera.hpp"
+#include "al5poly/Camera.hpp"
 
-Camera::Camera(void):
-    x_(0),
-    y_(0)
+namespace al5poly
 {
-}
+    Camera::Camera(void):
+        x_(0),
+        y_(0)
+    {
+    }
 
-int Camera::getX(void) const
-{
-    return this->x_;
-}
+    int Camera::getX(void) const
+    {
+        return this->x_;
+    }
 
-int Camera::getY(void) const
-{
-    return this->y_;
-}
+    int Camera::getY(void) const
+    {
+        return this->y_;
+    }
 
-int Camera::setX(const int x)
-{
-    return this->x_ = x;
-}
+    int Camera::setX(const int x)
+    {
+        return this->x_ = x;
+    }
 
-int Camera::setY(const int y)
-{
-    return this->y_ = y;
+    int Camera::setY(const int y)
+    {
+        return this->y_ = y;
+    }
 }
 

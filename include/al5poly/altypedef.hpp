@@ -18,27 +18,21 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef IRENDERABLE_HPP
-    #define IRENDERABLE_HPP
+#ifndef ALTYPEDEF_HPP
+    #define ALTYPEDEF_HPP
 
+    #include <allegro5/allegro5.h>
     #include <boost/shared_ptr.hpp>
+    #include <vector>
 
-class IRenderable;
-
-    #include "IFrame.hpp"
-    #include "IGameTime.hpp"
-
-class IRenderable
+namespace al5poly
 {
-public:
-    typedef boost::shared_ptr<IRenderable> Ptr;
-
-    virtual ~IRenderable(void) = 0;
-
-    virtual IFrame::Ptr getCurrentFrame(const IGameTime &) const = 0;
-    virtual int getX(void) const = 0;
-    virtual int getY(void) const = 0;
-};
+    typedef boost::shared_ptr<ALLEGRO_BITMAP> ALLEGRO_BITMAP_Ptr;
+    typedef std::vector<ALLEGRO_BITMAP_Ptr> ALLEGRO_BITMAP_Ptr_Vector;
+    typedef boost::shared_ptr<ALLEGRO_DISPLAY> ALLEGRO_DISPLAY_Ptr;
+    typedef boost::shared_ptr<ALLEGRO_EVENT_QUEUE> ALLEGRO_EVENT_QUEUE_Ptr;
+    typedef boost::shared_ptr<ALLEGRO_TIMER> ALLEGRO_TIMER_Ptr;
+}
 
 #endif
 

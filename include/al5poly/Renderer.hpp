@@ -18,20 +18,39 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef IEXCEPTION_HPP
-    #define IEXCEPTION_HPP
+#ifndef RENDERER_HPP
+    #define RENDERER_HPP
 
-    #include <string>
-
-class IException
+namespace al5poly
 {
-public:
-    virtual ~IException(void) = 0;
+    class Renderer;
+}
 
-    virtual std::string getMessage(void) const = 0;
+    #include "al5poly/altypedef.hpp"
+    #include "al5poly/ICamera.hpp"
+    #include "al5poly/IGameTime.hpp"
+    #include "al5poly/IRenderer.hpp"
 
-    virtual void raise(void) const = 0;
-};
+namespace al5poly
+{
+    class Renderer:
+        public IRenderer
+    {
+    private:
+        ALLEGRO_DISPLAY_Ptr display_;
+    public:
+        Renderer(const ALLEGRO_DISPLAY_Ptr);
+
+        int getScreenX(const IRenderable &, const ICamera &) const;
+        int getScreenY(const IRenderable &, const ICamera &) const;
+
+        void paint(void) const;
+        void render(
+                const IGameTime &,
+                const ICamera &,
+                const IRenderable &);
+    };
+}
 
 #endif
 

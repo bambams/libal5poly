@@ -18,10 +18,13 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "PlayerException.hpp"
+#include "al5poly/PlayerException.hpp"
 
-PlayerException::PlayerException(const std::string & message):
-    Exception(message)
+namespace al5poly
 {
+    PlayerException::PlayerException(const std::string & message):
+        Exception(message)
+    {
+    }
 }
 

@@ -18,27 +18,37 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CAMERA_HPP
-    #define CAMERA_HPP
+#ifndef EXCEPTION_HPP
+    #define EXCEPTION_HPP
 
-class Camera;
+    #include <stdexcept>
 
-    #include "ICamera.hpp"
-
-class Camera:
-    public ICamera
+namespace al5poly
 {
-private:
-    int x_;
-    int y_;
-public:
-    Camera(void);
+    class Exception;
+}
 
-    int getX(void) const;
-    int getY(void) const;
-    int setX(const int);
-    int setY(const int);
-};
+    #include "al5poly/IException.hpp"
+
+namespace al5poly
+{
+    class Exception:
+        public std::exception,
+        public IException
+    {
+    protected:
+        std::string message_;
+    public:
+        Exception(const std::string &);
+        virtual ~Exception(void) throw();
+
+        virtual std::string getMessage(void) const;
+
+        virtual void raise(void) const;
+
+        const char * what(void) const throw();
+    };
+}
 
 #endif
 

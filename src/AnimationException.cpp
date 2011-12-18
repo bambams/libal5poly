@@ -18,10 +18,13 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "AnimationException.hpp"
+#include "al5poly/AnimationException.hpp"
 
-AnimationException::AnimationException(const std::string & message):
-    Exception(message)
+namespace al5poly
 {
+    AnimationException::AnimationException(const std::string & message):
+        Exception(message)
+    {
+    }
 }
 

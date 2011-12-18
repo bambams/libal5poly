@@ -18,7 +18,10 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "IGameTime.hpp"
+#include "al5poly/IGameTime.hpp"
 
-IGameTime::~IGameTime(void) {}
+namespace al5poly
+{
+    IGameTime::~IGameTime(void) {}
+}
 

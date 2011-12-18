@@ -18,31 +18,30 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ANIMATION_HPP
-    #define ANIMATION_HPP
+#ifndef GAMETIME_HPP
+    #define GAMETIME_HPP
 
-class Animation;
-
-    #include "altypedef.hpp"
-    #include "AnimationException.hpp"
-    #include "Frame.hpp"
-    #include "GameTime.hpp"
-    #include "IAnimation.hpp"
-    #include "IFrame.hpp"
-
-class Animation:
-    public IAnimation
+namespace al5poly
 {
-private:
-    ALLEGRO_BITMAP_Ptr_Vector sprites_;
-    GameTime startTime_;
-    int ticksPerFrame_;
-public:
-    Animation(const ALLEGRO_BITMAP_Ptr_Vector &);
+    class GameTime;
+}
 
-    void begin(const int, const IGameTime &);
-    IFrame::Ptr getCurrentFrame(const IGameTime &) const;
-};
+    #include "al5poly/IGameTime.hpp"
+
+namespace al5poly
+{
+    class GameTime:
+        public IGameTime
+    {
+    private:
+        int ticks_;
+    public:
+        GameTime(void);
+        GameTime(int);
+
+        int getTicks(void) const;
+    };
+}
 
 #endif
 

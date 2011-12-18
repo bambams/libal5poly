@@ -18,11 +18,24 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef NULLDESTRUCTOR_HPP
-    #define NULLDESCTRUCTOR_HPP
+#ifndef ICAMERA_HPP
+    #define ICAMERA_HPP
 
-template<typename T>
-void NullDestructor(const T * const);
+    #include <boost/shared_ptr.hpp>
+
+namespace al5poly
+{
+    class ICamera
+    {
+    public:
+        typedef boost::shared_ptr<ICamera> Ptr;
+
+        virtual ~ICamera(void) = 0;
+
+        virtual int getX(void) const = 0;
+        virtual int getY(void) const = 0;
+    };
+}
 
 #endif
 

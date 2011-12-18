@@ -18,25 +18,35 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PLAYEREXCEPTION_HPP
-    #define PLAYEREXCEPTION_HPP
+#ifndef IANIMATION_HPP
+    #define IANIMATION_HPP
 
+    #include <boost/shared_ptr.hpp>
+    #include <map>
     #include <string>
 
-class PlayerException;
-
-    #include "Exception.hpp"
-    #include "IAnimation.hpp"
-    #include "IFrame.hpp"
-    #include "IGameTime.hpp"
-    #include "IRenderable.hpp"
-
-class PlayerException:
-    public Exception
+namespace al5poly
 {
-public:
-    PlayerException(const std::string &);
-};
+    class IAnimation;
+}
+
+        #include "al5poly/IFrame.hpp"
+        #include "al5poly/IGameTime.hpp"
+
+namespace al5poly
+{
+    class IAnimation
+    {
+    public:
+        typedef boost::shared_ptr<IAnimation> Ptr;
+        typedef std::map<std::string, Ptr> StringMap;
+
+        virtual ~IAnimation(void) = 0;
+
+        virtual void begin(const int, const IGameTime &) = 0;
+        virtual IFrame::Ptr getCurrentFrame(const IGameTime &) const = 0;
+    };
+}
 
 #endif
 

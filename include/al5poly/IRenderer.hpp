@@ -18,21 +18,33 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ANIMATIONEXCEPTION_HPP
-    #define ANIMATIONEXCEPTION_HPP
+#ifndef IRENDERER_HPP
+    #define IRENDERER_HPP
 
-    #include <string>
-
-class AnimationException;
-
-    #include "Exception.hpp"
-
-class AnimationException:
-    public Exception
+namespace al5poly
 {
-public:
-    AnimationException(const std::string &);
-};
+    class IRenderer;
+}
+
+    #include "al5poly/ICamera.hpp"
+    #include "al5poly/IGameTime.hpp"
+    #include "al5poly/IRenderable.hpp"
+
+namespace al5poly
+{
+    class IRenderer
+    {
+    public:
+        virtual ~IRenderer(void) = 0;
+
+        virtual void paint(void) const = 0;
+
+        virtual void render(
+                const IGameTime &,
+                const ICamera &,
+                const IRenderable &) = 0;
+    };
+}
 
 #endif
 

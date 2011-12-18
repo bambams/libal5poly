@@ -18,7 +18,10 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "IAnimation.hpp"
+#include "al5poly/IAnimation.hpp"
 
-IAnimation::~IAnimation(void) {}
+namespace al5poly
+{
+    IAnimation::~IAnimation(void) {}
+}
 

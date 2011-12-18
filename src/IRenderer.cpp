@@ -18,7 +18,10 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "IRenderer.hpp"
+#include "al5poly/IRenderer.hpp"
 
-IRenderer::~IRenderer(void) {}
+namespace al5poly
+{
+    IRenderer::~IRenderer(void) {}
+}
 

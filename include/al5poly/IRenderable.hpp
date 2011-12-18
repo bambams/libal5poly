@@ -18,29 +18,33 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef IANIMATION_HPP
-    #define IANIMATION_HPP
+#ifndef IRENDERABLE_HPP
+    #define IRENDERABLE_HPP
 
     #include <boost/shared_ptr.hpp>
-    #include <map>
-    #include <string>
 
-class IAnimation;
-
-    #include "IFrame.hpp"
-    #include "IGameTime.hpp"
-
-class IAnimation
+namespace al5poly
 {
-public:
-    typedef boost::shared_ptr<IAnimation> Ptr;
-    typedef std::map<std::string, Ptr> StringMap;
+    class IRenderable;
+}
 
-    virtual ~IAnimation(void) = 0;
+    #include "al5poly/IFrame.hpp"
+    #include "al5poly/IGameTime.hpp"
 
-    virtual void begin(const int, const IGameTime &) = 0;
-    virtual IFrame::Ptr getCurrentFrame(const IGameTime &) const = 0;
-};
+namespace al5poly
+{
+    class IRenderable
+    {
+    public:
+        typedef boost::shared_ptr<IRenderable> Ptr;
+
+        virtual ~IRenderable(void) = 0;
+
+        virtual IFrame::Ptr getCurrentFrame(const IGameTime &) const = 0;
+        virtual int getX(void) const = 0;
+        virtual int getY(void) const = 0;
+    };
+}
 
 #endif
 

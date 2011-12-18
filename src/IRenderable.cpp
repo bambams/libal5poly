@@ -18,7 +18,10 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "IRenderable.hpp"
+#include "al5poly/IRenderable.hpp"
 
-IRenderable::~IRenderable(void) {}
+namespace al5poly
+{
+    IRenderable::~IRenderable(void) {}
+}
 

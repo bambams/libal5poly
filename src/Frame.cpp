@@ -18,17 +18,20 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Frame.hpp"
+#include "al5poly/Frame.hpp"
 
-Frame::Frame(
-        const ALLEGRO_BITMAP_Ptr sprite):
-    sprite_(sprite)
+namespace al5poly
 {
-    assert(sprite);
-}
+    Frame::Frame(
+            const ALLEGRO_BITMAP_Ptr sprite):
+        sprite_(sprite)
+    {
+        assert(sprite);
+    }
 
-ALLEGRO_BITMAP_Ptr Frame::getSprite(void) const
-{
-    return this->sprite_;
+    ALLEGRO_BITMAP_Ptr Frame::getSprite(void) const
+    {
+        return this->sprite_;
+    }
 }
 

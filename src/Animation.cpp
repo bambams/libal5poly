@@ -18,35 +18,38 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Animation.hpp"
+#include "al5poly/Animation.hpp"
 
-Animation::Animation(const ALLEGRO_BITMAP_Ptr_Vector & sprites):
-    sprites_(sprites),
-    startTime_(0)
+namespace al5poly
 {
-    if(sprites.size() == 0)
+    Animation::Animation(const ALLEGRO_BITMAP_Ptr_Vector & sprites):
+        sprites_(sprites),
+        startTime_(0)
     {
-        AnimationException(
-                "Cannot make animation from empty sprite vector.").raise();
+        if(sprites.size() == 0)
+        {
+            AnimationException(
+                    "Cannot make animation from empty sprite vector.").raise();
+        }
     }
-}
 
-void Animation::begin(const int ticksPerFrame, const IGameTime & gameTime)
-{
-    this->startTime_ = gameTime.getTicks();
-    this->ticksPerFrame_ = ticksPerFrame;
-}
+    void Animation::begin(const int ticksPerFrame, const IGameTime & gameTime)
+    {
+        this->startTime_ = gameTime.getTicks();
+        this->ticksPerFrame_ = ticksPerFrame;
+    }
 
-IFrame::Ptr Animation::getCurrentFrame(const IGameTime & gameTime) const
-{
-    int ticks = gameTime.getTicks();
-    int startTicks = this->startTime_.getTicks();
-    int past = (ticks - startTicks) / this->ticksPerFrame_;
-    int i = past % (this->sprites_.size());
-    ALLEGRO_BITMAP_Ptr currentSprite = this->sprites_[i];
+    IFrame::Ptr Animation::getCurrentFrame(const IGameTime & gameTime) const
+    {
+        int ticks = gameTime.getTicks();
+        int startTicks = this->startTime_.getTicks();
+        int past = (ticks - startTicks) / this->ticksPerFrame_;
+        int i = past % (this->sprites_.size());
+        ALLEGRO_BITMAP_Ptr currentSprite = this->sprites_[i];
 
-    IFrame::Ptr currentFrame(new Frame(currentSprite));
+        IFrame::Ptr currentFrame(new Frame(currentSprite));
 
-    return currentFrame;
+        return currentFrame;
+    }
 }
 

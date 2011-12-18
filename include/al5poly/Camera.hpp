@@ -18,21 +18,33 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ICAMERA_HPP
-    #define ICAMERA_HPP
+#ifndef CAMERA_HPP
+    #define CAMERA_HPP
 
-    #include <boost/shared_ptr.hpp>
-
-class ICamera
+namespace al5poly
 {
-public:
-    typedef boost::shared_ptr<ICamera> Ptr;
+    class Camera;
+}
 
-    virtual ~ICamera(void) = 0;
+    #include "al5poly/ICamera.hpp"
 
-    virtual int getX(void) const = 0;
-    virtual int getY(void) const = 0;
-};
+namespace al5poly
+{
+    class Camera:
+        public ICamera
+    {
+    private:
+        int x_;
+        int y_;
+    public:
+        Camera(void);
+
+        int getX(void) const;
+        int getY(void) const;
+        int setX(const int);
+        int setY(const int);
+    };
+}
 
 #endif
 

@@ -18,24 +18,27 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef FRAME_HPP
-    #define FRAME_HPP
+#ifndef ANIMATIONEXCEPTION_HPP
+    #define ANIMATIONEXCEPTION_HPP
 
-class Frame;
+    #include <string>
 
-    #include "altypedef.hpp"
-    #include "IFrame.hpp"
-
-class Frame:
-    public IFrame
+namespace al5poly
 {
-private:
-    ALLEGRO_BITMAP_Ptr sprite_;
-public:
-    Frame(const ALLEGRO_BITMAP_Ptr);
+    class AnimationException;
+}
 
-    ALLEGRO_BITMAP_Ptr getSprite(void) const;
-};
+    #include "al5poly/Exception.hpp"
+
+namespace al5poly
+{
+    class AnimationException:
+        public Exception
+    {
+    public:
+        AnimationException(const std::string &);
+    };
+}
 
 #endif
 

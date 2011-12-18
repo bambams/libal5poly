@@ -18,24 +18,23 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef IFRAME_HPP
-    #define IFRAME_HPP
+#ifndef IGAMETIME_HPP
+    #define IGAMETIME_HPP
 
     #include <boost/shared_ptr.hpp>
 
-class IFrame;
-
-    #include "altypedef.hpp"
-
-class IFrame
+namespace al5poly
 {
-public:
-    typedef boost::shared_ptr<IFrame> Ptr;
+    class IGameTime
+    {
+    public:
+        typedef boost::shared_ptr<IGameTime> Ptr;
 
-    virtual ~IFrame(void) = 0;
+        virtual ~IGameTime(void) = 0;
 
-    virtual ALLEGRO_BITMAP_Ptr getSprite(void) const = 0;
-};
+        virtual int getTicks(void) const = 0;
+    };
+}
 
 #endif
 

@@ -18,22 +18,25 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Clock.hpp"
+#include "al5poly/Clock.hpp"
 
-Clock::Clock(void):
-    ticks_(0)
+namespace al5poly
 {
-}
+    Clock::Clock(void):
+        ticks_(0)
+    {
+    }
 
-void Clock::tick(void)
-{
-    this->ticks_++;
-}
+    void Clock::tick(void)
+    {
+        this->ticks_++;
+    }
 
-IGameTime::Ptr Clock::getGameTime(void) const
-{
-    IGameTime::Ptr time(new GameTime(this->ticks_));
+    IGameTime::Ptr Clock::getGameTime(void) const
+    {
+        IGameTime::Ptr time(new GameTime(this->ticks_));
 
-    return time;
+        return time;
+    }
 }
 

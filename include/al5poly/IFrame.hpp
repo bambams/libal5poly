@@ -18,27 +18,30 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef IRENDERER_HPP
-    #define IRENDERER_HPP
+#ifndef IFRAME_HPP
+    #define IFRAME_HPP
 
-class IRenderer;
+    #include <boost/shared_ptr.hpp>
 
-    #include "ICamera.hpp"
-    #include "IGameTime.hpp"
-    #include "IRenderable.hpp"
-
-class IRenderer
+namespace al5poly
 {
-public:
-    virtual ~IRenderer(void) = 0;
+    class IFrame;
+}
 
-    virtual void paint(void) const = 0;
+    #include "al5poly/altypedef.hpp"
 
-    virtual void render(
-            const IGameTime &,
-            const ICamera &,
-            const IRenderable &) = 0;
-};
+namespace al5poly
+{
+    class IFrame
+    {
+    public:
+        typedef boost::shared_ptr<IFrame> Ptr;
+
+        virtual ~IFrame(void) = 0;
+
+        virtual ALLEGRO_BITMAP_Ptr getSprite(void) const = 0;
+    };
+}
 
 #endif
 

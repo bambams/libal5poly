@@ -18,7 +18,10 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ICamera.hpp"
+#include "al5poly/ICamera.hpp"
 
-ICamera::~ICamera(void) {}
+namespace al5poly
+{
+    ICamera::~ICamera(void) {}
+}
 

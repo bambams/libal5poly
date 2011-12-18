@@ -18,22 +18,31 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GAMETIME_HPP
-    #define GAMETIME_HPP
+#ifndef CLOCK_HPP
+    #define CLOCK_HPP
 
-    #include "IGameTime.hpp"
-
-class GameTime:
-    public IGameTime
+namespace al5poly
 {
-private:
-    int ticks_;
-public:
-    GameTime(void);
-    GameTime(int);
+    class Clock;
+}
 
-    int getTicks(void) const;
-};
+    #include "al5poly/GameTime.hpp"
+    #include "al5poly/IGameTime.hpp"
+
+namespace al5poly
+{
+    class Clock
+    {
+    private:
+        int ticks_;
+    public:
+        Clock(void);
+
+        void tick(void);
+
+        IGameTime::Ptr getGameTime(void) const;
+    };
+}
 
 #endif
 

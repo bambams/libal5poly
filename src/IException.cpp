@@ -18,7 +18,10 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "IException.hpp"
+#include "al5poly/IException.hpp"
 
-IException::~IException(void) {}
+namespace al5poly
+{
+    IException::~IException(void) {}
+}
 

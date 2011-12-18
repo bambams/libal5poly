@@ -24,39 +24,39 @@
 #include <stdexcept>
 #include <vector>
 
-#include "altypedef.hpp"
-#include "Animation.hpp"
-#include "Camera.hpp"
-#include "Clock.hpp"
-#include "IAnimation.hpp"
-#include "IException.hpp"
-#include "IGameTime.hpp"
-#include "Player.hpp"
-#include "Renderer.hpp"
+#include "al5poly/altypedef.hpp"
+#include "al5poly/Animation.hpp"
+#include "al5poly/Camera.hpp"
+#include "al5poly/Clock.hpp"
+#include "al5poly/IAnimation.hpp"
+#include "al5poly/IException.hpp"
+#include "al5poly/IGameTime.hpp"
+#include "al5poly/Player.hpp"
+#include "al5poly/Renderer.hpp"
 
-ALLEGRO_BITMAP_Ptr createColoredBoxSprite(
+al5poly::ALLEGRO_BITMAP_Ptr createColoredBoxSprite(
         const int w,
         const int h,
         const ALLEGRO_COLOR);
 
 void initializeAllegro5(
-        ALLEGRO_DISPLAY_Ptr &,
-        ALLEGRO_TIMER_Ptr &,
-        ALLEGRO_EVENT_QUEUE_Ptr &);
+        al5poly::ALLEGRO_DISPLAY_Ptr &,
+        al5poly::ALLEGRO_TIMER_Ptr &,
+        al5poly::ALLEGRO_EVENT_QUEUE_Ptr &);
 
-IAnimation::StringMap loadAnimations(const int, const int);
+al5poly::IAnimation::StringMap loadAnimations(const int, const int);
 
 void centerPlayer(
-        Player &,
+        al5poly::Player &,
         const int,
         const int,
-        const ALLEGRO_DISPLAY_Ptr);
+        const al5poly::ALLEGRO_DISPLAY_Ptr);
 
 int main(int argc, char * argv[]) try
 {
-    ALLEGRO_DISPLAY_Ptr display;
-    ALLEGRO_TIMER_Ptr timer;
-    ALLEGRO_EVENT_QUEUE_Ptr eventQueue;
+    al5poly::ALLEGRO_DISPLAY_Ptr display;
+    al5poly::ALLEGRO_TIMER_Ptr timer;
+    al5poly::ALLEGRO_EVENT_QUEUE_Ptr eventQueue;
 
     initializeAllegro5(display, timer, eventQueue);
 
@@ -67,10 +67,10 @@ int main(int argc, char * argv[]) try
     const int boxWidth = 100;
     const int boxHeight = 100;
 
-    Camera camera;
-    Clock clock;
-    Player player(loadAnimations(boxWidth, boxHeight));
-    Renderer renderer(display);
+    al5poly::Camera camera;
+    al5poly::Clock clock;
+    al5poly::Player player(loadAnimations(boxWidth, boxHeight));
+    al5poly::Renderer renderer(display);
 
     centerPlayer(player, boxWidth, boxHeight, display);
 
@@ -89,7 +89,7 @@ int main(int argc, char * argv[]) try
         {
             clock.tick();
 
-            IGameTime::Ptr gameTime(clock.getGameTime());
+            al5poly::IGameTime::Ptr gameTime(clock.getGameTime());
             int ticks = gameTime->getTicks();
 
             if(ticks == 400)
@@ -159,7 +159,7 @@ int main(int argc, char * argv[]) try
                 renderer.render(*clock.getGameTime(), camera, player);
                 renderer.paint();
             }
-            catch(IException & ex)
+            catch(al5poly::IException & ex)
             {
                 std::cerr << ex.getMessage() << std::endl;
             }
@@ -176,10 +176,10 @@ catch(std::exception & ex)
 }
 
 void centerPlayer(
-        Player & player,
+        al5poly::Player & player,
         const int w,
         const int h,
-        const ALLEGRO_DISPLAY_Ptr display)
+        const al5poly::ALLEGRO_DISPLAY_Ptr display)
 {
     ALLEGRO_BITMAP * backbuffer = al_get_backbuffer(display.get());
     int displayWidth = al_get_bitmap_width(backbuffer);
@@ -189,17 +189,17 @@ void centerPlayer(
     player.setY(displayHeight / 2.0 - h / 2.0);
 }
 
-ALLEGRO_BITMAP_Ptr createColoredBoxSprite(
+al5poly::ALLEGRO_BITMAP_Ptr createColoredBoxSprite(
         int w,
         int h,
         ALLEGRO_COLOR color)
 {
-    ALLEGRO_BITMAP_Ptr sprite(
+    al5poly::ALLEGRO_BITMAP_Ptr sprite(
             al_create_bitmap(w, h),
             al_destroy_bitmap);
 
     if(!sprite)
-        Exception("Failed to create colored box sprite!").raise();
+        al5poly::Exception("Failed to create colored box sprite!").raise();
 
     al_set_target_bitmap(sprite.get());
 
@@ -209,44 +209,44 @@ ALLEGRO_BITMAP_Ptr createColoredBoxSprite(
 }
 
 void initializeAllegro5(
-        ALLEGRO_DISPLAY_Ptr & display,
-        ALLEGRO_TIMER_Ptr & timer,
-        ALLEGRO_EVENT_QUEUE_Ptr & eventQueue)
+        al5poly::ALLEGRO_DISPLAY_Ptr & display,
+        al5poly::ALLEGRO_TIMER_Ptr & timer,
+        al5poly::ALLEGRO_EVENT_QUEUE_Ptr & eventQueue)
 {
     const int FPS = 30;
 
     if(!al_init())
-        Exception("Failed to initialize Allegro 5!").raise();
+        al5poly::Exception("Failed to initialize Allegro 5!").raise();
 
     al_set_new_display_flags(ALLEGRO_WINDOWED);
 
-    ALLEGRO_DISPLAY_Ptr d(
+    al5poly::ALLEGRO_DISPLAY_Ptr d(
             al_create_display(800, 600),
             al_destroy_display);
 
     if(!d)
-        Exception("Failed to create Allegro 5 display!").raise();
+        al5poly::Exception("Failed to create Allegro 5 display!").raise();
 
     display = d;
 
     if(!al_install_keyboard())
-        Exception("Failed to install Allegro 5 keyboard!").raise();
+        al5poly::Exception("Failed to install Allegro 5 keyboard!").raise();
 
-    ALLEGRO_TIMER_Ptr t(
+    al5poly::ALLEGRO_TIMER_Ptr t(
             al_create_timer(1.0 / FPS),
             al_destroy_timer);
 
     if(!t)
-        Exception("Failed to create Allegro 5 timer!").raise();
+        al5poly::Exception("Failed to create Allegro 5 timer!").raise();
 
     timer = t;
 
-    ALLEGRO_EVENT_QUEUE_Ptr eQ(
+    al5poly::ALLEGRO_EVENT_QUEUE_Ptr eQ(
             al_create_event_queue(),
             al_destroy_event_queue);
 
     if(!eQ)
-        Exception("Failed to create Allegro 5 event queue!").raise();
+        al5poly::Exception("Failed to create Allegro 5 event queue!").raise();
 
     eventQueue = eQ;
 
@@ -263,47 +263,47 @@ void initializeAllegro5(
             al_get_timer_event_source(timer.get()));
 }
 
-IAnimation::StringMap loadAnimations(
+al5poly::IAnimation::StringMap loadAnimations(
         const int boxWidth,
         const int boxHeight)
 {
-    ALLEGRO_BITMAP_Ptr redBox(createColoredBoxSprite(
+    al5poly::ALLEGRO_BITMAP_Ptr redBox(createColoredBoxSprite(
             boxWidth,
             boxHeight,
             al_map_rgb(255, 0, 0)));
 
-    ALLEGRO_BITMAP_Ptr greenBox(createColoredBoxSprite(
+    al5poly::ALLEGRO_BITMAP_Ptr greenBox(createColoredBoxSprite(
             boxWidth,
             boxHeight,
             al_map_rgb(0, 255, 0)));
 
-    ALLEGRO_BITMAP_Ptr blueBox(createColoredBoxSprite(
+    al5poly::ALLEGRO_BITMAP_Ptr blueBox(createColoredBoxSprite(
             boxWidth,
             boxHeight,
             al_map_rgb(0, 0, 255)));
 
-    ALLEGRO_BITMAP_Ptr_Vector rg_sprites;
+    al5poly::ALLEGRO_BITMAP_Ptr_Vector rg_sprites;
 
     rg_sprites.push_back(redBox);
     rg_sprites.push_back(greenBox);
 
-    IAnimation::Ptr rg_animation(new Animation(rg_sprites));
+    al5poly::IAnimation::Ptr rg_animation(new al5poly::Animation(rg_sprites));
 
-    ALLEGRO_BITMAP_Ptr_Vector gb_sprites;
+    al5poly::ALLEGRO_BITMAP_Ptr_Vector gb_sprites;
 
     gb_sprites.push_back(greenBox);
     gb_sprites.push_back(blueBox);
 
-    IAnimation::Ptr gb_animation(new Animation(gb_sprites));
+    al5poly::IAnimation::Ptr gb_animation(new al5poly::Animation(gb_sprites));
 
-    ALLEGRO_BITMAP_Ptr_Vector br_sprites;
+    al5poly::ALLEGRO_BITMAP_Ptr_Vector br_sprites;
 
     br_sprites.push_back(blueBox);
     br_sprites.push_back(redBox);
 
-    IAnimation::Ptr br_animation(new Animation(br_sprites));
+    al5poly::IAnimation::Ptr br_animation(new al5poly::Animation(br_sprites));
 
-    IAnimation::StringMap animations;
+    al5poly::IAnimation::StringMap animations;
 
     animations.insert(std::make_pair("rg", rg_animation));
     animations.insert(std::make_pair("gb", gb_animation));

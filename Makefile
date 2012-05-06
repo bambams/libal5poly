@@ -48,7 +48,7 @@ dirs:
 example: library ${EXAMPLE}
 
 install: library
-	${INSTALL} -t ${PREFIX}/include ${INCDIR}/al5poly
+	${INSTALL} -d ${INCDIR}/al5poly ${PREFIX}/include
 	${INSTALL} -t ${PREFIX}/lib ${LIBRARY}
 
 library: dirs ${LIBDIR} ${OBJDIR} ${LIBRARY}

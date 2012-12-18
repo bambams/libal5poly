@@ -47,7 +47,7 @@ install: library
 	${INSTALL} -d ${INCDIR}/al5poly ${PREFIX}/include
 	${INSTALL} -t ${PREFIX}/bin ${LIBRARY}
 
-library: ${LIBRARY}
+library: ${BINDIR} ${LIBRARY}
 
 run: example
 	${EXAMPLE}

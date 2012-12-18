@@ -14,7 +14,6 @@ DLLNAME = al5poly
 SRCDIR = src
 VERSION = 1
 
-DIRS = ${BINDIR} ${LIBDIR} ${OBJDIR} ${OBJDIR}/example
 EXAMPLE = ${BINDIR}/al5poly_ex
 LIBRARY = ${BINDIR}/lib${DLLNAME}.${VERSION}.dll
 LIBOBJS = ${OBJDIR}/AnimationException.o \
@@ -35,14 +34,12 @@ LIBOBJS = ${OBJDIR}/AnimationException.o \
 		  ${OBJDIR}/Player.o \
 		  ${OBJDIR}/Renderer.o
 
-.PHONY: all clean dirs example install library run
+.PHONY: all clean example install library run
 
 all: library example
 
 clean:
 	${REMOVE} ${BINDIR} ${LIBDIR} ${OBJDIR}
-
-dirs: ${BINDIR} ${LIBDIR} ${OBJDIR}
 
 example: library ${EXAMPLE}
 
@@ -50,7 +47,7 @@ install: library
 	${INSTALL} -d ${INCDIR}/al5poly ${PREFIX}/include
 	${INSTALL} -t ${PREFIX}/bin ${LIBRARY}
 
-library: dirs ${LIBRARY}
+library: ${LIBRARY}
 
 run: example
 	${EXAMPLE}

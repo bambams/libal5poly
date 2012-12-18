@@ -65,7 +65,7 @@ ${LIBRARY}: ${LIBOBJS}
 	${CXX} -shared -Wl,--out-implib,lib${DLLNAME}.a -o $@ $? ${LIBS}
 	${COPY} $@ ${BINDIR}/lib${DLLNAME}.dll
 
-${EXAMPLE}: ${OBJDIR}/example/main.o $(LIBRARY)
+${EXAMPLE}: ${OBJDIR}/example/main.o ${LIBRARY}
 	${CXX} -o $@ $< ${LIBS} -L${BINDIR} -llibal5poly
 
 ${OBJDIR}/AnimationException.o: ${SRCDIR}/AnimationException.cpp ${INCDIR}/al5poly/AnimationException.hpp

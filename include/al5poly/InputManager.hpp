@@ -24,12 +24,12 @@ namespace al5poly
 
         ActionHandlerMap handlers_;
         KeyActionMap keys_;
+
+        IInputHandler::List & getActionHandlers(const std::string &);
     public:
         void addActionHandler(
                 const std::string &,
                 const IInputHandler::Ptr);
-
-        IInputHandler::List & getActionHandlers(const std::string &);
 
         void keyPress(const IGameTime &, ALLEGRO_EVENT * const);
 

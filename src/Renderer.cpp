@@ -63,7 +63,19 @@ namespace al5poly
 
         al_set_target_bitmap(al_get_backbuffer(this->display_.get()));
 
-        al_draw_bitmap(sprite.get(), x, y, 0);
+        int flags = 0;
+
+        switch(renderable.getOrientation())
+        {
+            case AL5POLY_ORIENTATION_FLIPPED_HORIZONTAL:
+                flags |= ALLEGRO_FLIP_HORIZONTAL;
+                break;
+            case AL5POLY_ORIENTATION_FLIPPED_VERTICAL:
+                flags |= ALLEGRO_FLIP_VERTICAL;
+                break;
+        }
+
+        al_draw_bitmap(sprite.get(), x, y, flags);
     }
 }
 

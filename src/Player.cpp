@@ -25,7 +25,9 @@ namespace al5poly
     Player::Player(const IAnimation::StringMap & animations):
         x_(0),
         y_(0),
-        animations_(animations)
+        animations_(animations),
+        jumpLastUpdate_(0),
+        jumpTimeRemaining_(0)
     {
     }
 

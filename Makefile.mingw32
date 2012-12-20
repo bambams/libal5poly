@@ -17,7 +17,10 @@ VERSION = 1
 EXAMPLE = ${BINDIR}/al5poly_ex
 LIBRARY = ${BINDIR}/lib${DLLNAME}.${VERSION}.dll
 LIBOBJS = ${OBJDIR}/AnimationException.o \
-		  ${OBJDIR}/Animation.o ${OBJDIR}/Camera.o \
+		  ${OBJDIR}/Animation.o \
+		  ${OBJDIR}/AssetManager.o \
+		  ${OBJDIR}/AssetManagerException.o \
+		  ${OBJDIR}/Camera.o \
 		  ${OBJDIR}/Clock.o \
 		  ${OBJDIR}/Exception.o \
 		  ${OBJDIR}/Frame.o \
@@ -75,6 +78,12 @@ ${OBJDIR}/AnimationException.o: ${SRCDIR}/AnimationException.cpp ${OBJDIR} ${INC
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 ${OBJDIR}/Animation.o: ${SRCDIR}/Animation.cpp ${OBJDIR} ${INCDIR}/al5poly/Animation.hpp
+	${CXX} ${CXXFLAGS} -c -o $@ $<
+
+${OBJDIR}/AssetManager.o: ${SRCDIR}/AssetManager.cpp ${OBJDIR} ${INCDIR}/al5poly/AssetManager.hpp
+	${CXX} ${CXXFLAGS} -c -o $@ $<
+
+${OBJDIR}/AssetManagerException.o: ${SRCDIR}/AssetManagerException.cpp ${OBJDIR} ${INCDIR}/al5poly/AssetManagerException.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 ${OBJDIR}/Camera.o: ${SRCDIR}/Camera.cpp ${OBJDIR} ${INCDIR}/al5poly/Camera.hpp

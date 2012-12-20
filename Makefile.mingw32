@@ -30,6 +30,8 @@ LIBOBJS = ${OBJDIR}/AnimationException.o \
 		  ${OBJDIR}/IException.o \
 		  ${OBJDIR}/IFrame.o \
 		  ${OBJDIR}/IGameTime.o \
+		  ${OBJDIR}/IInputHandler.o \
+		  ${OBJDIR}/InputManager.o \
 		  ${OBJDIR}/IRenderable.o \
 		  ${OBJDIR}/IRenderer.o \
 		  ${OBJDIR}/NullDestructor.o \
@@ -114,6 +116,12 @@ ${OBJDIR}/IFrame.o: ${SRCDIR}/IFrame.cpp ${OBJDIR} ${INCDIR}/al5poly/IFrame.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 ${OBJDIR}/IGameTime.o: ${SRCDIR}/IGameTime.cpp ${OBJDIR} ${INCDIR}/al5poly/IGameTime.hpp
+	${CXX} ${CXXFLAGS} -c -o $@ $<
+
+${OBJDIR}/IInputHandler.o: ${SRCDIR}/IInputHandler.cpp ${OBJDIR} ${INCDIR}/al5poly/IInputHandler.hpp
+	${CXX} ${CXXFLAGS} -c -o $@ $<
+
+${OBJDIR}/InputManager.o: ${SRCDIR}/InputManager.cpp ${OBJDIR} ${INCDIR}/al5poly/InputManager.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 ${OBJDIR}/IRenderable.o: ${SRCDIR}/IRenderable.cpp ${OBJDIR} ${INCDIR}/al5poly/IRenderable.hpp

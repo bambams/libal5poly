@@ -1,7 +1,7 @@
 BINDIR = bin
 COPY = cp
 CXX = mingw32-g++
-CXXFLAGS = -fPIC -g3 -Iinclude -Wall
+CXXFLAGS = -g3 -Iinclude -Wall
 INCDIR = include
 INSTALL = install
 LIBDIR = lib

@@ -56,7 +56,7 @@ namespace al5poly
             boost::shared_ptr<IInputHandler> handler = (*it3);
 
             // Too Perl-ish???
-            (*handler)(time);
+            (*handler)(action, time);
         }
     }
 

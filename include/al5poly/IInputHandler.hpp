@@ -22,7 +22,9 @@ namespace al5poly
 
         virtual ~IInputHandler(void) = 0;
 
-        virtual void operator()(const IGameTime &) const = 0;
+        virtual void operator()(
+                const std::string &,
+                const IGameTime &) const = 0;
     };
 }
 

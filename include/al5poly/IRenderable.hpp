@@ -28,6 +28,7 @@ namespace al5poly
     class IRenderable;
 }
 
+    #include "al5poly/Orientation.hpp"
     #include "al5poly/IFrame.hpp"
     #include "al5poly/IGameTime.hpp"
 
@@ -41,6 +42,7 @@ namespace al5poly
         virtual ~IRenderable(void) = 0;
 
         virtual IFrame::Ptr getCurrentFrame(const IGameTime &) const = 0;
+        virtual Orientation getOrientation(void) const = 0;
         virtual int getX(void) const = 0;
         virtual int getY(void) const = 0;
     };

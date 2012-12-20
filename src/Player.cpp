@@ -90,6 +90,18 @@ namespace al5poly
         this->facing_ = direction;
     }
 
+    Orientation Player::getOrientation(void) const
+    {
+        switch(this->facing_)
+        {
+            case AL5POLY_DIRECTION_LEFT:
+                return AL5POLY_ORIENTATION_FLIPPED_HORIZONTAL;
+            default:
+                return AL5POLY_ORIENTATION_NONE;
+        }
+
+    }
+
     //h4x.
     bool Player::isJumping(void) const
     {

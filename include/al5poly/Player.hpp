@@ -27,6 +27,7 @@ namespace al5poly
 }
 
     #include "al5poly/Direction.hpp"
+    #include "al5poly/Orientation.hpp"
     #include "al5poly/IAnimation.hpp"
     #include "al5poly/IFrame.hpp"
     #include "al5poly/IGameTime.hpp"
@@ -63,6 +64,7 @@ namespace al5poly
 
         // h4x.
         void face(const Direction);
+        Orientation getOrientation(void) const;
 
         // h4x.
         bool isJumping(void) const;

@@ -42,6 +42,10 @@ namespace al5poly
         int y_;
         IAnimation::StringMap animations_;
         IAnimation::Ptr currentAnimation_;
+
+        // h4x.
+        int jumpLastUpdate_;
+        int jumpTimeRemaining_;
     public:
         Player(const IAnimation::StringMap &);
 
@@ -52,6 +56,12 @@ namespace al5poly
         int getY(void) const;
         int setX(const int);
         int setY(const int);
+
+        // h4x.
+        bool isJumping(void) const;
+        void jump(const IGameTime &);
+        void land(void);
+        void updateJump(const IGameTime &, int * const);
     };
 }
 

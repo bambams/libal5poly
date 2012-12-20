@@ -80,5 +80,37 @@ namespace al5poly
     {
         return this->y_ = y;
     }
+
+    //h4x.
+    bool Player::isJumping(void) const
+    {
+        return this->jumpTimeRemaining_ != 0;
+    }
+
+    void Player::jump(const IGameTime & time)
+    {
+        this->jumpLastUpdate_ = time.getTicks();
+        this->jumpTimeRemaining_ = 4;
+    }
+
+    void Player::land(void)
+    {
+        this->jumpLastUpdate_ = 0;
+    }
+
+    void Player::updateJump(const IGameTime & time, int * const delta)
+    {
+        int ticks = time.getTicks();
+
+        *delta = ticks - this->jumpLastUpdate_;
+
+        this->jumpLastUpdate_ = ticks;
+        this->jumpTimeRemaining_ -= *delta;
+
+        if(this->jumpTimeRemaining_ < 0)
+        {
+            this->jumpTimeRemaining_ = 0;
+        }
+    }
 }
 

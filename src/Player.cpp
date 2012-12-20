@@ -102,6 +102,11 @@ namespace al5poly
 
     void Player::updateJump(const IGameTime & time, int * const delta)
     {
+        if(!this->isJumping())
+        {
+            PlayerException("Player is not jumping.").raise();
+        }
+
         int ticks = time.getTicks();
 
         *delta = ticks - this->jumpLastUpdate_;

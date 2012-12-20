@@ -2,6 +2,12 @@
 
 namespace al5poly
 {
+    InputManager::InputManager(void):
+        keysDown_(0)
+    {
+        memset(this->keyStates_, false, sizeof(bool) * ALLEGRO_KEY_MAX);
+    }
+
     void InputManager::addActionHandler(
             const std::string & action,
             const IInputHandler::Ptr handler)
@@ -25,12 +31,44 @@ namespace al5poly
         return this->handlers_[action] = IInputHandler::List();
     }
 
-    void InputManager::keyPress(
-            const IGameTime & time,
-            ALLEGRO_EVENT * const event)
+    void InputManager::keyPress(const int keycode)
     {
-        KeyActionMap::const_iterator it =
-                this->keys_.find(event->keyboard.keycode);
+        this->keyStates_[keycode] = true;
+        this->keysDown_++;
+    }
+
+    void InputManager::keyRelease(const int keycode)
+    {
+        this->keyStates_[keycode] = false;
+        this->keysDown_--;
+    }
+
+    void InputManager::setKeyAction(const int key, const std::string & action)
+    {
+        this->keys_[key] = action;
+    }
+
+    void InputManager::sendEvents(const IGameTime & time) const
+    {
+        if(this->keysDown_ == 0)
+        {
+            return;
+        }
+
+        for(int i=0; i<ALLEGRO_KEY_MAX; i++)
+        {
+            if(this->keyStates_[i])
+            {
+                this->sendKeyDown(time, i);
+            }
+        }
+    }
+
+    void InputManager::sendKeyDown(
+            const IGameTime & time,
+            const int keycode) const
+    {
+        KeyActionMap::const_iterator it = this->keys_.find(keycode);
 
         if(it == this->keys_.end())
         {
@@ -58,10 +96,5 @@ namespace al5poly
             // Too Perl-ish???
             (*handler)(action, time);
         }
-    }
-
-    void InputManager::setKeyAction(const int key, const std::string & action)
-    {
-        this->keys_[key] = action;
     }
 }

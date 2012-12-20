@@ -2,6 +2,7 @@
     #define INPUT_MANAGER_HPP
 
     #include <allegro5/allegro5.h>
+    #include <cstring>
     #include <map>
     #include <stdexcept>
     #include <string>
@@ -25,13 +26,23 @@ namespace al5poly
         ActionHandlerMap handlers_;
         KeyActionMap keys_;
 
+        // h4x.
+        int keysDown_;
+        bool keyStates_[ALLEGRO_KEY_MAX];
+
         IInputHandler::List & getActionHandlers(const std::string &);
     public:
+        InputManager(void);
+
         void addActionHandler(
                 const std::string &,
                 const IInputHandler::Ptr);
 
-        void keyPress(const IGameTime &, ALLEGRO_EVENT * const);
+        void keyPress(const int);
+        void keyRelease(const int);
+
+        void sendEvents(const IGameTime &) const;
+        void sendKeyDown(const IGameTime &, const int) const;
 
         void setKeyAction(const int, const std::string &);
     };

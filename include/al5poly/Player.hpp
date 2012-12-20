@@ -26,6 +26,7 @@ namespace al5poly
     class Player;
 }
 
+    #include "al5poly/Direction.hpp"
     #include "al5poly/IAnimation.hpp"
     #include "al5poly/IFrame.hpp"
     #include "al5poly/IGameTime.hpp"
@@ -44,6 +45,9 @@ namespace al5poly
         IAnimation::Ptr currentAnimation_;
 
         // h4x.
+        Direction facing_;
+
+        // h4x.
         int jumpLastUpdate_;
         int jumpTimeRemaining_;
     public:
@@ -56,6 +60,9 @@ namespace al5poly
         int getY(void) const;
         int setX(const int);
         int setY(const int);
+
+        // h4x.
+        void face(const Direction);
 
         // h4x.
         bool isJumping(void) const;

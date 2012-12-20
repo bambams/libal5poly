@@ -26,6 +26,7 @@ namespace al5poly
         x_(0),
         y_(0),
         animations_(animations),
+        facing_(AL5POLY_DIRECTION_NONE),
         jumpLastUpdate_(0),
         jumpTimeRemaining_(0)
     {
@@ -81,6 +82,12 @@ namespace al5poly
     int Player::setY(const int y)
     {
         return this->y_ = y;
+    }
+
+    // h4x.
+    void Player::face(const Direction direction)
+    {
+        this->facing_ = direction;
     }
 
     //h4x.

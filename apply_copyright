@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cr_lines="`wc -l COPYRIGHT | awk '{print $1}'`";
+old_cr_lines="`wc -l .COPYRIGHT.old | awk '{print $1}'`";
 
 function append_contents
 {
@@ -67,12 +68,26 @@ function main
             -o -name \*.hpp`;
     do
         if ! copyright_exists "${file}"; then
+            if old_copyright_exists "${file}"; then
+                local num_lines="`wc -l .COPYRIGHT.old | \
+                    awk '{print $1}'`";
+                sed -i -e "1,${num_lines}d" "${file}";
+            fi;
             backup_orig "${file}";
             begin_with_copyright "${file}";
             append_contents "${file}";
             remove_backup "${file}";
         fi;
     done
+}
+
+function old_copyright_exists
+{
+    local file="$1";
+
+    [ "`head -n "${old_cr_lines}" "${file}"`" == "`cat .COPYRIGHT.old`" ];
+
+    return ${?};
 }
 
 function remove_backup

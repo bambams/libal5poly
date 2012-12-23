@@ -4,20 +4,20 @@ cr_lines="`wc -l COPYRIGHT | sed -r 's/([0-9]+).*/\1/'`";
 
 function append_contents
 {
-	file="${1}"
-	orig="${1}.orig"
+    file="${1}"
+    orig="${1}.orig"
 
-	cat "${orig}" >> "${file}"
-	check_status_fatal ${?} "Failed to append original contents."
+    cat "${orig}" >> "${file}"
+    check_status_fatal ${?} "Failed to append original contents."
 }
 
 function backup_orig
 {
     file="${1}"
-	orig="${file}.orig"
+    orig="${file}.orig"
 
-	mv "${file}" "${orig}"
-	check_status_fatal ${?} "Failed to move \'${file}\' to \'${orig}\'"
+    mv "${file}" "${orig}"
+    check_status_fatal ${?} "Failed to move \'${file}\' to \'${orig}\'"
 }
 
 function begin_with_copyright
@@ -26,28 +26,28 @@ function begin_with_copyright
 
     cat COPYRIGHT 1> "${file}";
 
-	check_status_fatal ${?} "Failed to initialize \'${file}\' with copyright."
+    check_status_fatal ${?} "Failed to initialize \'${file}\' with copyright."
 }
 
 function check_status
 {
-	status="${1}"
-	errmsg="${2}"
+    status="${1}"
+    errmsg="${2}"
 
-	if [ "${status}" != '0' ]; then
-		echo "${errmsg}" 1>&2
-	fi
+    if [ "${status}" != '0' ]; then
+        echo "${errmsg}" 1>&2
+    fi
 }
 
 function check_status_fatal
 {
-	status="$1"
-	errmsg="$2"
+    status="$1"
+    errmsg="$2"
 
-	if [ "${status}" != '0' ]; then
-		echo "${errmsg}" 1>&2
-		exit 1
-	fi
+    if [ "${status}" != '0' ]; then
+        echo "${errmsg}" 1>&2
+        exit 1
+    fi
 }
 
 function copyright_exists
@@ -61,28 +61,27 @@ function copyright_exists
 
 function main
 {
-	command="$1"
+    command="$1"
 
     for file in `find -name \*.c -o -name \*.cpp -o -name \*.h \
             -o -name \*.hpp`;
     do
         if ! copyright_exists "${file}"; then
-        	backup_orig "${file}";
-        	begin_with_copyright "${file}";
-        	append_contents "${file}";
-        	remove_backup "${file}";
+            backup_orig "${file}";
+            begin_with_copyright "${file}";
+            append_contents "${file}";
+            remove_backup "${file}";
         fi;
     done
 }
 
 function remove_backup
 {
-	backup="${1}.orig"
+    backup="${1}.orig"
 
-	rm "${backup}"
+    rm "${backup}"
 
-	check_status ${?} "Failed to remove backup \'${backup}\'"
+    check_status ${?} "Failed to remove backup \'${backup}\'"
 }
 
 main "${0}" "${@}"
-

@@ -51,6 +51,7 @@ namespace al5poly
         // h4x.
         int jumpLastUpdate_;
         int jumpTimeRemaining_;
+        bool landed_;
     public:
         Player(const IAnimation::StringMap &);
 
@@ -68,6 +69,7 @@ namespace al5poly
 
         // h4x.
         bool isJumping(void) const;
+        bool isLanded(void) const;
         void jump(const IGameTime &);
         void land(void);
         void updateJump(const IGameTime &, int * const);

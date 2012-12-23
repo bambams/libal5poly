@@ -28,7 +28,8 @@ namespace al5poly
         animations_(animations),
         facing_(AL5POLY_DIRECTION_NONE),
         jumpLastUpdate_(0),
-        jumpTimeRemaining_(0)
+        jumpTimeRemaining_(0),
+        landed_(true)
     {
     }
 
@@ -105,18 +106,30 @@ namespace al5poly
     //h4x.
     bool Player::isJumping(void) const
     {
-        return this->jumpTimeRemaining_ != 0;
+        return this->jumpTimeRemaining_ != 0 && !this->landed_;
+    }
+
+    bool Player::isLanded(void) const
+    {
+        return this->landed_;
     }
 
     void Player::jump(const IGameTime & time)
     {
+        if(!this->isLanded())
+        {
+            return;
+        }
+
         this->jumpLastUpdate_ = time.getTicks();
         this->jumpTimeRemaining_ = 4;
+        this->landed_ = false;
     }
 
     void Player::land(void)
     {
         this->jumpLastUpdate_ = 0;
+        this->landed_ = true;
     }
 
     void Player::updateJump(const IGameTime & time, int * const delta)

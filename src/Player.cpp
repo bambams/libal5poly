@@ -127,16 +127,17 @@ namespace al5poly
         }
 
         int ticks = time.getTicks();
+        int dt = ticks - this->jumpLastUpdate_;
 
-        *delta = ticks - this->jumpLastUpdate_;
+        if(dt > this->jumpTimeRemaining_)
+        {
+            dt = this->jumpTimeRemaining_;
+        }
 
         this->jumpLastUpdate_ = ticks;
-        this->jumpTimeRemaining_ -= *delta;
+        this->jumpTimeRemaining_ -= dt;
 
-        if(this->jumpTimeRemaining_ < 0)
-        {
-            this->jumpTimeRemaining_ = 0;
-        }
+        *delta = dt;
     }
 }
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cr_lines="`wc -l COPYRIGHT | sed -r 's/([0-9]+).*/\1/'`";
+cr_lines="`wc -l COPYRIGHT | awk '{print $1}'`";
 
 function append_contents
 {

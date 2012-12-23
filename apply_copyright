@@ -4,8 +4,8 @@ cr_lines="`wc -l COPYRIGHT | sed -r 's/([0-9]+).*/\1/'`";
 
 function append_contents
 {
-    file="${1}"
-    orig="${1}.orig"
+    local file="${1}"
+    local orig="${1}.orig"
 
     cat "${orig}" >> "${file}"
     check_status_fatal ${?} "Failed to append original contents."
@@ -13,8 +13,8 @@ function append_contents
 
 function backup_orig
 {
-    file="${1}"
-    orig="${file}.orig"
+    local file="${1}"
+    local orig="${file}.orig"
 
     mv "${file}" "${orig}"
     check_status_fatal ${?} "Failed to move \'${file}\' to \'${orig}\'"
@@ -22,7 +22,7 @@ function backup_orig
 
 function begin_with_copyright
 {
-    file="${1}"
+    local file="${1}"
 
     cat COPYRIGHT 1> "${file}";
 
@@ -31,8 +31,8 @@ function begin_with_copyright
 
 function check_status
 {
-    status="${1}"
-    errmsg="${2}"
+    local status="${1}"
+    local errmsg="${2}"
 
     if [ "${status}" != '0' ]; then
         echo "${errmsg}" 1>&2
@@ -41,8 +41,8 @@ function check_status
 
 function check_status_fatal
 {
-    status="$1"
-    errmsg="$2"
+    local status="$1"
+    local errmsg="$2"
 
     if [ "${status}" != '0' ]; then
         echo "${errmsg}" 1>&2
@@ -52,7 +52,7 @@ function check_status_fatal
 
 function copyright_exists
 {
-    file="$1";
+    local file="$1";
 
     [ "`head -n \"${cr_lines}\" \"${file}\"`" == "`cat COPYRIGHT`" ];
 
@@ -61,7 +61,7 @@ function copyright_exists
 
 function main
 {
-    command="$1"
+    local command="$1"
 
     for file in `find -name \*.c -o -name \*.cpp -o -name \*.h \
             -o -name \*.hpp`;
@@ -77,7 +77,7 @@ function main
 
 function remove_backup
 {
-    backup="${1}.orig"
+    local backup="${1}.orig"
 
     rm "${backup}"
 

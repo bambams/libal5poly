@@ -54,7 +54,7 @@ function copyright_exists
 {
     local file="$1";
 
-    [ "`head -n \"${cr_lines}\" \"${file}\"`" == "`cat COPYRIGHT`" ];
+    [ "`head -n "${cr_lines}" "${file}"`" == "`cat COPYRIGHT`" ];
 
     return ${?};
 }

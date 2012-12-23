@@ -28,12 +28,18 @@ namespace al5poly
         std::string getAssetPath(const std::string &) const;
         ALLEGRO_PATH * getAssetsRootPath(void) const;
 
+        void addAnimation(
+                    const std::string &,
+                    const al5poly::IAnimation::Ptr &);
         al5poly::IAnimation::Ptr getAnimation(const std::string &) const;
         al5poly::IAnimation::Ptr loadAnimation(
                 const std::string name,
                 const int numFrames,
                 ...);
 
+        void addBitmap(
+                    const std::string &,
+                    const al5poly::ALLEGRO_BITMAP_Ptr &);
         al5poly::ALLEGRO_BITMAP_Ptr getBitmap(const std::string &) const;
         al5poly::ALLEGRO_BITMAP_Ptr loadBitmap(
                 const std::string &,

@@ -2,6 +2,20 @@
 
 namespace al5poly
 {
+    void AssetManager::addAnimation(
+                const std::string & name,
+                const al5poly::IAnimation::Ptr & animation)
+    {
+        this->animations_[name] = animation;
+    }
+
+    void AssetManager::addBitmap(
+                const std::string & name,
+                const al5poly::ALLEGRO_BITMAP_Ptr & bitmap)
+    {
+        this->bitmaps_[name] = bitmap;
+    }
+
     IAnimation::Ptr AssetManager::getAnimation(
             const std::string & name) const
     {

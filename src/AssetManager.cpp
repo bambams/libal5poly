@@ -52,7 +52,7 @@ namespace al5poly
 
     std::string AssetManager::getAssetPath(const std::string & asset) const
     {
-        ALLEGRO_PATH * path = getAssetsRootPath();
+        ALLEGRO_PATH * path = this->getAssetsRootPath();
         ALLEGRO_PATH * assetPath = al_create_path(asset.c_str());
 
         if(assetPath == 0)

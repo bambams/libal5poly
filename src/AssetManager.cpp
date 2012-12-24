@@ -55,13 +55,11 @@ namespace al5poly
         ALLEGRO_PATH * path = this->getAssetsRootPath();
         ALLEGRO_PATH * assetPath = al_create_path(asset.c_str());
 
-        if(assetPath == 0)
+        if(assetPath == 0 || !al_join_paths(path, assetPath))
         {
             std::string msg = "Failed to build asset path: " + asset;
             AssetManagerException(msg).raise();
         }
-
-        al_join_paths(path, assetPath);
 
         al_destroy_path(assetPath);
 

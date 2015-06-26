@@ -19,11 +19,12 @@ DIRS = ${BINDIR} ${LIBDIR} ${OBJDIR} ${OBJDIR}/example
 EXAMPLE = ${BINDIR}/al5poly_ex
 LIBRARY = ${LIBDIR}/lib${SONAME}.${VERSION}.so
 
+HEADERS = $(shell find $(INCDIR) -name \*.hpp)
 SOURCES = $(shell find ${SRCDIR} -name \*.cpp)
 OBJECTS = $(shell find ${SRCDIR} -name \*.cpp | \
 		sed -e 's/cpp$$/o/' -e "s/${SRCDIR}/${OBJDIR}/")
 
-${OBJDIR}/%.o: ${SRCDIR}/%.cpp
+${OBJDIR}/%.o: ${SRCDIR}/%.cpp ${HEADERS}
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 .PHONY: all clean dirs example install library run

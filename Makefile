@@ -41,7 +41,7 @@ example: library ${EXAMPLE}
 
 install: library
 	${INSTALL} -d ${PREFIX}/${INCDIR}/al5poly ${PREFIX}/$(LIBDIR)
-	${INSTALL} -t ${PREFIX}/${INCDIR} ${INCDIR}/al5poly
+	${INSTALL} -t ${PREFIX}/${INCDIR}/al5poly ${HEADERS}
 	${INSTALL} -t ${PREFIX}/${LIBDIR} ${LIBRARY}
 
 library: dirs ${LIBDIR} ${OBJDIR} ${LIBRARY}

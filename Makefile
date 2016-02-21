@@ -12,8 +12,8 @@ SRCDIR = src
 SYMLINK = ln -fs
 VERSION = 1
 
-CXXFLAGS = -fPIC -g3 -I${INCDIR} -Wall `pkg-config --cflags allegro-5.0`
-LIBS = `pkg-config --libs allegro-5.0`
+CXXFLAGS = -fPIC -g3 -I${INCDIR} -Wall `pkg-config --cflags allegro-5`
+LIBS = `pkg-config --libs allegro-5`
 
 DIRS = ${BINDIR} ${LIBDIR} ${OBJDIR} ${OBJDIR}/example
 EXAMPLE = ${BINDIR}/al5poly_ex

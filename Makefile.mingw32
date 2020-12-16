@@ -1,11 +1,11 @@
 BINDIR = bin
 COPY = cp
-CXX = mingw32-g++
-CXXFLAGS = -g3 -Iinclude -Wall
+CXX = g++
+CXXFLAGS = -g3 -Iinclude -ID:/mingw32/i686-w64-mingw32/include -Wall
 INCDIR = include
 INSTALL = install
 LIBDIR = lib
-LIBS = -lallegro-5.0.7-monolith-md
+LIBS = -LD:/mingw32/i686-w64-mingw32/lib -LD:/Users/Brandon/lib -lallegro_monolith-static -ljpeg -ldumb -lFLAC -lfreetype -lvorbisfile -lvorbis -logg -lphysfs -lpng16 -lzlibstatic -ldsound -lgdiplus -luuid -lkernel32 -lwinmm -lpsapi -lopengl32 -lglu32 -luser32 -lcomdlg32 -lgdi32 -lshell32 -lole32 -ladvapi32 -lws2_32 -lshlwapi -lwebp
 MKDIR = mkdir
 OBJDIR = obj
 PREFIX =

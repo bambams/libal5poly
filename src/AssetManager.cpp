@@ -154,4 +154,53 @@ namespace al5poly
 
         return bitmap;
     }
+
+    void AssetManager::addColor(
+            const std::string & name,
+            ALLEGRO_COLOR color)
+    {
+        this->colors_.insert(std::make_pair(name, color));
+    }
+
+    ALLEGRO_COLOR AssetManager::createColor(
+            const std::string & name,
+            int red,
+            int green,
+            int blue,
+            int alpha = 255)
+    {
+        ALLEGRO_COLOR value = al_map_rgba(red, green, blue, alpha);
+
+        this->colors_.insert(std::make_pair(name, value));
+
+        return value;
+    }
+
+    ALLEGRO_COLOR AssetManager::createColor(
+            const std::string & name,
+            float red,
+            float green,
+            float blue,
+            float alpha)
+    {
+        ALLEGRO_COLOR value = al_map_rgba_f(red, green, blue, alpha);
+
+        this->colors_.insert(std::make_pair(name, value));
+
+        return value;
+    }
+
+    ALLEGRO_COLOR AssetManager::getColor(const std::string & name) const
+    {
+        ColorMap::const_iterator it = this->colors_.find(name);
+
+        if(it == this->colors_.end())
+        {
+            std::string msg = "Bitmap asset not found: " + name;
+
+            AssetManagerException(msg).raise();
+        }
+
+        return (*it).second;
+    }
 }

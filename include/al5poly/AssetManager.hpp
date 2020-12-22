@@ -21,7 +21,7 @@
 #ifndef ASSET_MANAGER_HPP
     #define ASSET_MANAGER_HPP
 
-    #include <allegro5/allegro5.h>
+    #include <allegro5/allegro.h>
     #include <cstdarg>
     #include <map>
 
@@ -41,9 +41,11 @@ namespace al5poly
     {
         typedef std::map<std::string, al5poly::IAnimation::Ptr> AnimationMap;
         typedef std::map<std::string, al5poly::ALLEGRO_BITMAP_Ptr> BitmapMap;
+        typedef std::map<std::string, ALLEGRO_COLOR> ColorMap;
 
         AnimationMap animations_;
         BitmapMap bitmaps_;
+        ColorMap colors_;
     public:
         std::string getAssetPath(const std::string &) const;
         ALLEGRO_PATH * getAssetsRootPath(void) const;
@@ -65,6 +67,21 @@ namespace al5poly
                 const std::string &,
                 const std::string &,
                 const bool);
+
+        void addColor(const std::string &, ALLEGRO_COLOR);
+        ALLEGRO_COLOR createColor(
+                const std::string &,
+                int,
+                int,
+                int,
+                int);
+        ALLEGRO_COLOR createColor(
+                const std::string &,
+                float,
+                float,
+                float,
+                float);
+        ALLEGRO_COLOR getColor(const std::string &) const;
     };
 }
 

@@ -6,7 +6,7 @@ INCDIR = include
 INSTALL = install
 LIBDIR = lib
 LIBS = -LD:/mingw32/i686-w64-mingw32/lib -LD:/Users/Brandon/lib -lallegro_monolith-static -ljpeg -ldumb -lFLAC -lfreetype -lvorbisfile -lvorbis -logg -lphysfs -lpng16 -lzlibstatic -ldsound -lgdiplus -luuid -lkernel32 -lwinmm -lpsapi -lopengl32 -lglu32 -luser32 -lcomdlg32 -lgdi32 -lshell32 -lole32 -ladvapi32 -lws2_32 -lshlwapi -lwebp
-MKDIR = mkdir
+MKDIR = mkdir -p
 OBJDIR = obj
 PREFIX =
 REMOVE = rm -fR
@@ -14,8 +14,10 @@ DLLNAME = al5poly
 SRCDIR = src
 VERSION = 1
 
+DIRS = ${BINDIR} ${LIBDIR} ${OBJDIR} ${OBJDIR}/example
 EXAMPLE = ${BINDIR}/al5poly_ex
 LIBRARY = ${BINDIR}/lib${DLLNAME}.${VERSION}.dll
+
 LIBOBJS = ${OBJDIR}/AnimationException.o \
 		  ${OBJDIR}/Animation.o \
 		  ${OBJDIR}/AssetManager.o \
@@ -40,12 +42,15 @@ LIBOBJS = ${OBJDIR}/AnimationException.o \
 		  ${OBJDIR}/Player.o \
 		  ${OBJDIR}/Renderer.o
 
-.PHONY: all clean example install library run
+.PHONY: all clean dirs example install library prerequisite run ${BINDIR} $(LIBDIR) $(OBJDIR) ${OBJDIR}/example
 
 all: library example
 
 clean:
-	${REMOVE} ${BINDIR} ${LIBDIR} ${OBJDIR}
+	${REMOVE} ${DIRS}
+
+dirs: ${DIRS}
+	@${MKDIR} $?
 
 example: library ${EXAMPLE}
 
@@ -53,28 +58,18 @@ install: library
 	${INSTALL} -d ${INCDIR}/al5poly ${PREFIX}/include
 	${INSTALL} -t ${PREFIX}/bin ${LIBRARY}
 
-library: ${BINDIR} ${LIBRARY}
+library: prerequisite ${LIBRARY}
+
+prerequisite: dirs
 
 run: example
 	${EXAMPLE}
-
-${BINDIR}:
-	${MKDIR} $@
-
-${LIBDIR}:
-	${MKDIR} $@
-
-${OBJDIR}:
-	${MKDIR} $@
-
-${OBJDIR}/example:
-	${MKDIR} $@
 
 ${LIBRARY}: ${LIBOBJS}
 	${CXX} -shared -o $@ $? ${LIBS}
 	${COPY} $@ ${BINDIR}/lib${DLLNAME}.dll
 
-${EXAMPLE}: ${OBJDIR}/example/main.o ${LIBRARY} ${BINDIR}
+${EXAMPLE}: ${OBJDIR}/example/main.o ${LIBRARY}
 	${CXX} -o $@ $< ${LIBS} -L${BINDIR} -l${DLLNAME}
 
 ${OBJDIR}/AnimationException.o: ${SRCDIR}/AnimationException.cpp ${INCDIR}/al5poly/AnimationException.hpp

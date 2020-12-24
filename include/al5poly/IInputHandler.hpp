@@ -18,8 +18,8 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INPUT_HANDLER_HPP
-    #define INPUT_HANDLER_HPP
+#ifndef IINPUT_HANDLER_HPP
+    #define IINPUT_HANDLER_HPP
 
     #include <boost/shared_ptr.hpp>
     #include <boost/weak_ptr.hpp>

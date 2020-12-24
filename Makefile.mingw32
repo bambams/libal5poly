@@ -77,73 +77,73 @@ ${LIBRARY}: ${LIBOBJS}
 ${EXAMPLE}: ${OBJDIR}/example/main.o ${LIBRARY} ${BINDIR}
 	${CXX} -o $@ $< ${LIBS} -L${BINDIR} -l${DLLNAME}
 
-${OBJDIR}/AnimationException.o: ${SRCDIR}/AnimationException.cpp ${OBJDIR} ${INCDIR}/al5poly/AnimationException.hpp
+${OBJDIR}/AnimationException.o: ${SRCDIR}/AnimationException.cpp ${INCDIR}/al5poly/AnimationException.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/Animation.o: ${SRCDIR}/Animation.cpp ${OBJDIR} ${INCDIR}/al5poly/Animation.hpp
+${OBJDIR}/Animation.o: ${SRCDIR}/Animation.cpp ${INCDIR}/al5poly/Animation.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/AssetManager.o: ${SRCDIR}/AssetManager.cpp ${OBJDIR} ${INCDIR}/al5poly/AssetManager.hpp
+${OBJDIR}/AssetManager.o: ${SRCDIR}/AssetManager.cpp ${INCDIR}/al5poly/AssetManager.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/AssetManagerException.o: ${SRCDIR}/AssetManagerException.cpp ${OBJDIR} ${INCDIR}/al5poly/AssetManagerException.hpp
+${OBJDIR}/AssetManagerException.o: ${SRCDIR}/AssetManagerException.cpp ${INCDIR}/al5poly/AssetManagerException.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/Camera.o: ${SRCDIR}/Camera.cpp ${OBJDIR} ${INCDIR}/al5poly/Camera.hpp
+${OBJDIR}/Camera.o: ${SRCDIR}/Camera.cpp ${INCDIR}/al5poly/Camera.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/Clock.o: ${SRCDIR}/Clock.cpp ${OBJDIR} ${INCDIR}/al5poly/Clock.hpp
+${OBJDIR}/Clock.o: ${SRCDIR}/Clock.cpp ${INCDIR}/al5poly/Clock.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/Exception.o: ${SRCDIR}/Exception.cpp ${OBJDIR} ${INCDIR}/al5poly/Exception.hpp
+${OBJDIR}/Exception.o: ${SRCDIR}/Exception.cpp ${INCDIR}/al5poly/Exception.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/Frame.o: ${SRCDIR}/Frame.cpp ${OBJDIR} ${INCDIR}/al5poly/Frame.hpp
+${OBJDIR}/Frame.o: ${SRCDIR}/Frame.cpp ${INCDIR}/al5poly/Frame.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/GameTime.o: ${SRCDIR}/GameTime.cpp ${OBJDIR} ${INCDIR}/al5poly/GameTime.hpp
+${OBJDIR}/GameTime.o: ${SRCDIR}/GameTime.cpp ${INCDIR}/al5poly/GameTime.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/IAnimation.o: ${SRCDIR}/IAnimation.cpp ${OBJDIR} ${INCDIR}/al5poly/IAnimation.hpp
+${OBJDIR}/IAnimation.o: ${SRCDIR}/IAnimation.cpp ${INCDIR}/al5poly/IAnimation.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/ICamera.o: ${SRCDIR}/ICamera.cpp ${OBJDIR} ${INCDIR}/al5poly/ICamera.hpp
+${OBJDIR}/ICamera.o: ${SRCDIR}/ICamera.cpp ${INCDIR}/al5poly/ICamera.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/IException.o: ${SRCDIR}/IException.cpp ${OBJDIR} ${INCDIR}/al5poly/IException.hpp
+${OBJDIR}/IException.o: ${SRCDIR}/IException.cpp ${INCDIR}/al5poly/IException.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/IFrame.o: ${SRCDIR}/IFrame.cpp ${OBJDIR} ${INCDIR}/al5poly/IFrame.hpp
+${OBJDIR}/IFrame.o: ${SRCDIR}/IFrame.cpp ${INCDIR}/al5poly/IFrame.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/IGameTime.o: ${SRCDIR}/IGameTime.cpp ${OBJDIR} ${INCDIR}/al5poly/IGameTime.hpp
+${OBJDIR}/IGameTime.o: ${SRCDIR}/IGameTime.cpp ${INCDIR}/al5poly/IGameTime.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/IInputHandler.o: ${SRCDIR}/IInputHandler.cpp ${OBJDIR} ${INCDIR}/al5poly/IInputHandler.hpp
+${OBJDIR}/IInputHandler.o: ${SRCDIR}/IInputHandler.cpp ${INCDIR}/al5poly/IInputHandler.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/InputManager.o: ${SRCDIR}/InputManager.cpp ${OBJDIR} ${INCDIR}/al5poly/InputManager.hpp
+${OBJDIR}/InputManager.o: ${SRCDIR}/InputManager.cpp ${INCDIR}/al5poly/InputManager.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/IRenderable.o: ${SRCDIR}/IRenderable.cpp ${OBJDIR} ${INCDIR}/al5poly/IRenderable.hpp
+${OBJDIR}/IRenderable.o: ${SRCDIR}/IRenderable.cpp ${INCDIR}/al5poly/IRenderable.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/IRenderer.o: ${SRCDIR}/IRenderer.cpp ${OBJDIR} ${INCDIR}/al5poly/IRenderer.hpp
+${OBJDIR}/IRenderer.o: ${SRCDIR}/IRenderer.cpp ${INCDIR}/al5poly/IRenderer.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/LambdaInputHandler.o: ${SRCDIR}/LambdaInputHandler.cpp ${OBJDIR} ${INCDIR}/al5poly/LambdaInputHandler.hpp
+${OBJDIR}/LambdaInputHandler.o: ${SRCDIR}/LambdaInputHandler.cpp ${INCDIR}/al5poly/LambdaInputHandler.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/NullDestructor.o: ${SRCDIR}/NullDestructor.cpp ${OBJDIR} ${INCDIR}/al5poly/NullDestructor.hpp
+${OBJDIR}/NullDestructor.o: ${SRCDIR}/NullDestructor.cpp ${INCDIR}/al5poly/NullDestructor.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/PlayerException.o: ${SRCDIR}/PlayerException.cpp ${OBJDIR} ${INCDIR}/al5poly/PlayerException.hpp
+${OBJDIR}/PlayerException.o: ${SRCDIR}/PlayerException.cpp ${INCDIR}/al5poly/PlayerException.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/Player.o: ${SRCDIR}/Player.cpp ${OBJDIR} ${INCDIR}/al5poly/Player.hpp
+${OBJDIR}/Player.o: ${SRCDIR}/Player.cpp ${INCDIR}/al5poly/Player.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/Renderer.o: ${SRCDIR}/Renderer.cpp ${OBJDIR} ${INCDIR}/al5poly/Renderer.hpp
+${OBJDIR}/Renderer.o: ${SRCDIR}/Renderer.cpp ${INCDIR}/al5poly/Renderer.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 ${OBJDIR}/example/main.o: ${SRCDIR}/example/main.cpp ${OBJDIR}/example

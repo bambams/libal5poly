@@ -44,11 +44,16 @@ namespace al5poly
 
     void Renderer::paint(void) const
     {
+        this->paint(al_map_rgb(0, 0, 0));
+    }
+
+    void Renderer::paint(ALLEGRO_COLOR color) const
+    {
         al_flip_display();
 
         al_set_target_bitmap(al_get_backbuffer(this->display_.get()));
 
-        al_clear_to_color(al_map_rgb(0, 0, 0));
+        al_clear_to_color(color);
     }
 
     void Renderer::render(

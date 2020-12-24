@@ -45,6 +45,7 @@ namespace al5poly
         int getScreenY(const IRenderable &, const ICamera &) const;
 
         void paint(void) const;
+        void paint(ALLEGRO_COLOR) const;
         void render(
                 const IGameTime &,
                 const ICamera &,

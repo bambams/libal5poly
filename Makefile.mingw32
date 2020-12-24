@@ -34,6 +34,7 @@ LIBOBJS = ${OBJDIR}/AnimationException.o \
 		  ${OBJDIR}/InputManager.o \
 		  ${OBJDIR}/IRenderable.o \
 		  ${OBJDIR}/IRenderer.o \
+		  ${OBJDIR}/LambdaInputHandler.o \
 		  ${OBJDIR}/NullDestructor.o \
 		  ${OBJDIR}/PlayerException.o \
 		  ${OBJDIR}/Player.o \
@@ -130,7 +131,7 @@ ${OBJDIR}/IRenderable.o: ${SRCDIR}/IRenderable.cpp ${OBJDIR} ${INCDIR}/al5poly/I
 ${OBJDIR}/IRenderer.o: ${SRCDIR}/IRenderer.cpp ${OBJDIR} ${INCDIR}/al5poly/IRenderer.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
-${OBJDIR}/example/main.o: ${SRCDIR}/example/main.cpp ${OBJDIR}/example
+${OBJDIR}/LambdaInputHandler.o: ${SRCDIR}/LambdaInputHandler.cpp ${OBJDIR} ${INCDIR}/al5poly/LambdaInputHandler.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 ${OBJDIR}/NullDestructor.o: ${SRCDIR}/NullDestructor.cpp ${OBJDIR} ${INCDIR}/al5poly/NullDestructor.hpp
@@ -143,4 +144,7 @@ ${OBJDIR}/Player.o: ${SRCDIR}/Player.cpp ${OBJDIR} ${INCDIR}/al5poly/Player.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 ${OBJDIR}/Renderer.o: ${SRCDIR}/Renderer.cpp ${OBJDIR} ${INCDIR}/al5poly/Renderer.hpp
+	${CXX} ${CXXFLAGS} -c -o $@ $<
+
+${OBJDIR}/example/main.o: ${SRCDIR}/example/main.cpp ${OBJDIR}/example
 	${CXX} ${CXXFLAGS} -c -o $@ $<

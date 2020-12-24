@@ -71,17 +71,27 @@ namespace al5poly
         void addColor(const std::string &, ALLEGRO_COLOR);
         ALLEGRO_COLOR createColor(
                 const std::string &,
+                unsigned char,
+                unsigned char,
+                unsigned char,
+                unsigned char = 255);
+        ALLEGRO_COLOR createColor(
+                const std::string &,
                 int,
                 int,
                 int,
-                int);
+                int = 255);
         ALLEGRO_COLOR createColor(
                 const std::string &,
                 float,
                 float,
                 float,
-                float);
+                float = 1.0);
         ALLEGRO_COLOR getColor(const std::string &) const;
+
+        const char * printColor(const std::string &) const;
+
+        static const char * printColor(ALLEGRO_COLOR);
     };
 }
 

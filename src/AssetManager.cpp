@@ -164,16 +164,30 @@ namespace al5poly
 
     ALLEGRO_COLOR AssetManager::createColor(
             const std::string & name,
-            int red,
-            int green,
-            int blue,
-            int alpha = 255)
+            unsigned char red,
+            unsigned char green,
+            unsigned char blue,
+            unsigned char alpha)
     {
         ALLEGRO_COLOR value = al_map_rgba(red, green, blue, alpha);
 
         this->colors_.insert(std::make_pair(name, value));
 
         return value;
+    }
+
+    ALLEGRO_COLOR AssetManager::createColor(
+            const std::string & name,
+            int red,
+            int green,
+            int blue,
+            int alpha)
+    {
+        return this->createColor(
+                name,
+                (unsigned char)red,
+                (unsigned char)green,
+                (unsigned char)blue);
     }
 
     ALLEGRO_COLOR AssetManager::createColor(
@@ -196,11 +210,30 @@ namespace al5poly
 
         if(it == this->colors_.end())
         {
-            std::string msg = "Bitmap asset not found: " + name;
+            std::string msg = "Color asset not found: " + name;
 
             AssetManagerException(msg).raise();
         }
 
         return (*it).second;
+    }
+
+    const char * AssetManager::printColor(const std::string & name) const
+    {
+        return printColor(this->getColor(name));
+    }
+
+    const char * AssetManager::printColor(ALLEGRO_COLOR color)
+    {
+        static char buffer[50] = {0};
+
+        unsigned char red, green, blue, alpha;
+
+        al_unmap_rgba(color, &red, &green, &blue, &alpha);
+
+        snprintf(buffer, 50, "{\"r\": %d, \"g\": %d, \"b\": %d, \"a\": %d}",
+                (int)red, (int)green, (int)blue, (int)alpha);
+
+        return buffer;
     }
 }

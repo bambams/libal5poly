@@ -35,6 +35,9 @@ namespace al5poly
     #include "al5poly/IAnimation.hpp"
     #include "AssetManagerException.hpp"
 
+#define AL5POLY_ERROR_COLOR (al_map_rgb(255, 0, 254))
+#define AL5POLY_MAGIC_PINK (al_map_rgb(255, 0, 255))
+
 namespace al5poly
 {
     class AssetManager
@@ -87,7 +90,9 @@ namespace al5poly
                 float,
                 float,
                 float = 1.0);
-        ALLEGRO_COLOR getColor(const std::string &) const;
+        ALLEGRO_COLOR getColor(
+                const std::string &,
+                bool throwOnMismatch = true) const;
 
         const char * printColor(const std::string &) const;
 

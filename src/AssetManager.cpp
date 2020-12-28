@@ -171,6 +171,9 @@ namespace al5poly
     {
         ALLEGRO_COLOR value = al_map_rgba(red, green, blue, alpha);
 
+        fprintf(stderr, "LIBAL5POLY DEBUG: {\"r\": %d, \"g\": %d, \"b\": %d, \"a\": %d} <=> %s\n",
+                (int)red, (int)green, (int)blue, (int)alpha, AssetManager::printColor(value));
+
         this->colors_.insert(std::make_pair(name, value));
 
         return value;
@@ -204,7 +207,9 @@ namespace al5poly
         return value;
     }
 
-    ALLEGRO_COLOR AssetManager::getColor(const std::string & name) const
+    ALLEGRO_COLOR AssetManager::getColor(
+            const std::string & name,
+            bool throwOnMismatch) const
     {
         ColorMap::const_iterator it = this->colors_.find(name);
 
@@ -212,7 +217,15 @@ namespace al5poly
         {
             std::string msg = "Color asset not found: " + name;
 
-            AssetManagerException(msg).raise();
+            if (throwOnMismatch)
+            {
+                AssetManagerException(msg).raise();
+            }
+            else
+            {
+                fprintf(stderr, "%s. Falling back on AL5POLY_ERROR_COLOR. ;)\n", msg.c_str());
+                return AL5POLY_ERROR_COLOR;
+            }
         }
 
         return (*it).second;
@@ -220,11 +233,14 @@ namespace al5poly
 
     const char * AssetManager::printColor(const std::string & name) const
     {
-        return printColor(this->getColor(name));
+fprintf(stderr, "LIBAL5POLY DEBUG: const char * AssetManager::printColor(const std::string & name) const was called.\n");
+        return AssetManager::printColor(this->getColor(name));
     }
 
     const char * AssetManager::printColor(ALLEGRO_COLOR color)
     {
+fprintf(stderr, "LIBAL5POLY DEBUG: const char * AssetManager::printColor(ALLEGRO_COLOR color) was called.\n");
+
         static char buffer[50] = {0};
 
         unsigned char red, green, blue, alpha;

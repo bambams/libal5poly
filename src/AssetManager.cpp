@@ -56,32 +56,40 @@ namespace al5poly
     {
         std::stringstream ss;
 
-        auto const & [maybe_comma,reset_comma] = al5poly::string::create_maybe_comma(ss);
-
         ss << "{";
 
         ss << "\"animations\":{";
 
+        bool cont = false;
+
         for (auto const& [name, animation_ptr] : this->animations_)
         {
-            maybe_comma();
+            if (cont)
+            {
+                ss << ", ";
+            }
 
             ss << "\"" << al5poly::string::replace(name, "\"", "\\\"") << "\": {";
 
             ss << animation_ptr->to_string();
 
             ss << "}";
+
+            cont = true;
         }
 
         ss << "}";
 
-        reset_comma();
+        cont = false;
 
         ss << "\"bitmaps\":{";
 
         for (auto const& [name, bitmap_ptr] : this->bitmaps_)
         {
-            maybe_comma();
+            if (cont)
+            {
+                ss << ", ";
+            }
 
             ss << "\"" << al5poly::string::replace(name, "\"", "\\\"") << "\": {";
 
@@ -89,19 +97,26 @@ namespace al5poly
             ss << ", \"height\": " << al_get_bitmap_height(bitmap_ptr.get());
 
             ss << "}";
+
+            cont = true;
         }
 
         ss << "}";
 
-        reset_comma();
+        cont = false;
 
         ss << "\"colors\":{";
 
         for (auto const& [name, color] : this->colors_)
         {
-            maybe_comma();
+            if (cont)
+            {
+                ss << ", ";
+            }
 
             ss << "\"" << al5poly::string::replace(name, "\"", "\\\"") << "\": " << AssetManager::printColor(color);
+
+            cont = true;
         }
 
         ss << "}";

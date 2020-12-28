@@ -69,16 +69,20 @@ namespace al5poly
            << this->sprites_.size()
            << " :raw (";
 
-        auto const & [maybe_comma, reset_comma] =
-                al5poly::string::create_maybe_comma(ss);
+        bool cont = false;
 
         for (auto const & sprite_ptr : this->sprites_)
         {
-            maybe_comma();
+            if (cont)
+            {
+                ss << ", ";
+            }
 
             ss << "'#<BITMAP_Ptr>("
                << "0x" << std::hex << sprite_ptr.get() << std::dec
                << ")";
+
+            cont = true;
         }
 
         ss << ")"

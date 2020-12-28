@@ -205,8 +205,6 @@ namespace al5poly
             const std::string & path,
             const bool magicPinkAlpha = false)
     {
-        const ALLEGRO_COLOR MAGIC_PINK = al_map_rgb(255, 0, 255);
-
         ALLEGRO_BITMAP_Ptr bitmap(
                 al_load_bitmap(this->getAssetPath(path).c_str()),
                 al_destroy_bitmap);
@@ -221,7 +219,7 @@ namespace al5poly
 
         if(magicPinkAlpha)
         {
-            al_convert_mask_to_alpha(bitmap.get(), MAGIC_PINK);
+            al_convert_mask_to_alpha(bitmap.get(), AL5POLY_MAGIC_PINK);
         }
 
         this->bitmaps_.insert(std::make_pair(name, bitmap));

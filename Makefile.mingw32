@@ -1,7 +1,7 @@
 BINDIR = bin
 COPY = cp
 CXX = g++
-CXXFLAGS = -g3 -Iinclude -ID:/mingw32/i686-w64-mingw32/include -Wall
+CXXFLAGS = -g3 -Iinclude -ID:/mingw32/i686-w64-mingw32/include -std=c++17 -Wall
 INCDIR = include
 INSTALL = install
 LIBDIR = lib

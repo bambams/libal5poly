@@ -50,6 +50,7 @@ namespace al5poly
         BitmapMap bitmaps_;
         ColorMap colors_;
     public:
+        std::string dumpToJson(void) const;
         std::string getAssetPath(const std::string &) const;
         ALLEGRO_PATH * getAssetsRootPath(void) const;
 

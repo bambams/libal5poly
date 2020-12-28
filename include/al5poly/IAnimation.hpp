@@ -32,19 +32,23 @@ namespace al5poly
 
         #include "al5poly/IFrame.hpp"
         #include "al5poly/IGameTime.hpp"
+        #include "al5poly/IStringable.hpp"
 
 namespace al5poly
 {
-    class IAnimation
+    class IAnimation:
+        public IStringable
     {
     public:
         typedef boost::shared_ptr<IAnimation> Ptr;
         typedef std::map<std::string, Ptr> StringMap;
 
-        virtual ~IAnimation(void) = 0;
+        virtual ~IAnimation(void);
 
         virtual void begin(const int, const IGameTime &) = 0;
         virtual IFrame::Ptr getCurrentFrame(const IGameTime &) const = 0;
+
+        virtual std::string to_string(void) const;
     };
 }
 

@@ -36,11 +36,13 @@ LIBOBJS = ${OBJDIR}/AnimationException.o \
 		  ${OBJDIR}/InputManager.o \
 		  ${OBJDIR}/IRenderable.o \
 		  ${OBJDIR}/IRenderer.o \
+		  ${OBJDIR}/IStringable.o \
 		  ${OBJDIR}/LambdaInputHandler.o \
 		  ${OBJDIR}/NullDestructor.o \
 		  ${OBJDIR}/PlayerException.o \
 		  ${OBJDIR}/Player.o \
-		  ${OBJDIR}/Renderer.o
+		  ${OBJDIR}/Renderer.o \
+		  ${OBJDIR}/string.o
 
 .PHONY: all clean dirs example install library prerequisite run ${BINDIR} $(LIBDIR) $(OBJDIR) ${OBJDIR}/example
 
@@ -120,6 +122,9 @@ ${OBJDIR}/IInputHandler.o: ${SRCDIR}/IInputHandler.cpp ${INCDIR}/al5poly/IInputH
 ${OBJDIR}/InputManager.o: ${SRCDIR}/InputManager.cpp ${INCDIR}/al5poly/InputManager.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
+${OBJDIR}/IStringable.o: ${SRCDIR}/IStringable.cpp ${INCDIR}/al5poly/IStringable.hpp
+	${CXX} ${CXXFLAGS} -c -o $@ $<
+
 ${OBJDIR}/IRenderable.o: ${SRCDIR}/IRenderable.cpp ${INCDIR}/al5poly/IRenderable.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
@@ -139,6 +144,9 @@ ${OBJDIR}/Player.o: ${SRCDIR}/Player.cpp ${INCDIR}/al5poly/Player.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 ${OBJDIR}/Renderer.o: ${SRCDIR}/Renderer.cpp ${INCDIR}/al5poly/Renderer.hpp
+	${CXX} ${CXXFLAGS} -c -o $@ $<
+
+${OBJDIR}/string.o: ${SRCDIR}/string.cpp ${INCDIR}/al5poly/string.hpp
 	${CXX} ${CXXFLAGS} -c -o $@ $<
 
 ${OBJDIR}/example/main.o: ${SRCDIR}/example/main.cpp ${OBJDIR}/example

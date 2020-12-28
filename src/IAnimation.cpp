@@ -18,10 +18,21 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <sstream>
+
 #include "al5poly/IAnimation.hpp"
 
 namespace al5poly
 {
     IAnimation::~IAnimation(void) {}
+
+    std::string IAnimation::to_string(void) const
+    {
+        std::stringstream ss;
+
+        ss << "'#<al5poly::IAnimation>(0x" << std::hex << this << std::dec << ")";
+
+        return ss.str();
+    }
 }
 

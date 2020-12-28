@@ -47,6 +47,8 @@ namespace al5poly
 
         void begin(const int, const IGameTime &);
         IFrame::Ptr getCurrentFrame(const IGameTime &) const;
+
+        virtual std::string to_string(void) const;
     };
 }
 

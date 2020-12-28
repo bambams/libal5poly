@@ -18,7 +18,10 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <sstream>
+
 #include "al5poly/AssetManager.hpp"
+#include "al5poly/string.hpp"
 
 namespace al5poly
 {
@@ -36,8 +39,7 @@ namespace al5poly
         this->bitmaps_[name] = bitmap;
     }
 
-    IAnimation::Ptr AssetManager::getAnimation(
-            const std::string & name) const
+    IAnimation::Ptr AssetManager::getAnimation( const std::string & name) const
     {
         AnimationMap::const_iterator it = this->animations_.find(name);
 
@@ -48,6 +50,63 @@ namespace al5poly
         }
 
         return (*it).second;
+    }
+
+    std::string AssetManager::dumpToJson(void) const
+    {
+        std::stringstream ss;
+
+        auto const & [maybe_comma,reset_comma] = al5poly::string::create_maybe_comma(ss);
+
+        ss << "{";
+
+        ss << "\"animations\":{";
+
+        for (auto const& [name, animation_ptr] : this->animations_)
+        {
+            maybe_comma();
+
+            ss << "\"" << al5poly::string::replace(name, "\"", "\\\"") << "\": {";
+
+            ss << animation_ptr->to_string();
+
+            ss << "}";
+        }
+
+        ss << "}";
+
+        reset_comma();
+
+        ss << "\"bitmaps\":{";
+
+        for (auto const& [name, bitmap_ptr] : this->bitmaps_)
+        {
+            maybe_comma();
+
+            ss << "\"" << al5poly::string::replace(name, "\"", "\\\"") << "\": {";
+
+            ss << "\"width\": " << al_get_bitmap_width(bitmap_ptr.get());
+            ss << ", \"height\": " << al_get_bitmap_height(bitmap_ptr.get());
+
+            ss << "}";
+        }
+
+        ss << "}";
+
+        reset_comma();
+
+        ss << "\"colors\":{";
+
+        for (auto const& [name, color] : this->colors_)
+        {
+            maybe_comma();
+
+            ss << "\"" << al5poly::string::replace(name, "\"", "\\\"") << "\": " << AssetManager::printColor(color);
+        }
+
+        ss << "}";
+
+        return ss.str();
     }
 
     std::string AssetManager::getAssetPath(const std::string & asset) const

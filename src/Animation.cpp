@@ -18,7 +18,10 @@
  * along with libal5poly.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <sstream>
+
 #include "al5poly/Animation.hpp"
+#include "al5poly/string.hpp"
 
 namespace al5poly
 {
@@ -50,6 +53,39 @@ namespace al5poly
         IFrame::Ptr currentFrame(new Frame(currentSprite));
 
         return currentFrame;
+    }
+
+    std::string Animation::to_string(void) const
+    {
+        std::stringstream ss;
+
+        ss << "'#<al5poly::Animation>("
+           << " :start_time "
+           << this->startTime_.getTicks()
+           << " :ticks_per_frame "
+           << this->ticksPerFrame_
+           << " :sprites '#<al5poly::ALLEGRO_BITMAP_Ptr_Vector>("
+           << " :count "
+           << this->sprites_.size()
+           << " :raw (";
+
+        auto const & [maybe_comma, reset_comma] =
+                al5poly::string::create_maybe_comma(ss);
+
+        for (auto const & sprite_ptr : this->sprites_)
+        {
+            maybe_comma();
+
+            ss << "'#<BITMAP_Ptr>("
+               << "0x" << std::hex << sprite_ptr.get() << std::dec
+               << ")";
+        }
+
+        ss << ")"
+           << ")"
+           << ")";
+
+        return ss.str();
     }
 }
 

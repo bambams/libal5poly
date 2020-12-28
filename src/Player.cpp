@@ -43,6 +43,30 @@ namespace al5poly
         this->currentAnimation_->begin(ticksPerFrame, gameTime);
     }
 
+    IAnimation::Ptr Player::getCurrentAnimation(void) const
+    {
+        return this->currentAnimation_;
+    }
+
+    std::pair<std::string, IAnimation::Ptr>
+    Player::getCurrentAnimationDetails(void) const
+    {
+        std::string name;
+
+        for (auto const & pair : this->animations_)
+        {
+            if (this->currentAnimation_ == pair.second)
+            {
+                name = pair.first;
+                break;
+            }
+        }
+
+        return std::pair<std::string, IAnimation::Ptr>(
+                name,
+                this->currentAnimation_);
+    }
+
     void Player::setCurrentAnimation(const std::string & name)
     {
         IAnimation::StringMap::iterator match =

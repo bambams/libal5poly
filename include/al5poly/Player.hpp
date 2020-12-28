@@ -56,6 +56,8 @@ namespace al5poly
         Player(const IAnimation::StringMap &);
 
         void beginAnimation(const int, const IGameTime &);
+        IAnimation::Ptr getCurrentAnimation(void) const;
+        std::pair<std::string, IAnimation::Ptr> getCurrentAnimationDetails(void) const;
         void setCurrentAnimation(const std::string &);
         IFrame::Ptr getCurrentFrame(const IGameTime &) const;
         int getX(void) const;

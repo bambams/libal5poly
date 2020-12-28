@@ -63,9 +63,18 @@ namespace al5poly
         this->keysDown_--;
     }
 
-    void InputManager::setKeyAction(const int key, const std::string & action)
+    void InputManager::mapKeyAction(
+            const int keycode,
+            const std::string & action,
+            const IInputHandler::Ptr handler)
     {
-        this->keys_[key] = action;
+        this->addActionHandler(action, handler);
+        this->setKeyAction(keycode, action);
+    }
+
+    void InputManager::setKeyAction(const int keycode, const std::string & action)
+    {
+        this->keys_[keycode] = action;
     }
 
     void InputManager::sendEvents(const IGameTime & time) const

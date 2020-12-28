@@ -61,6 +61,8 @@ namespace al5poly
         void keyPress(const int);
         void keyRelease(const int);
 
+        void mapKeyAction(const int, const std::string &, const IInputHandler::Ptr);
+
         void sendEvents(const IGameTime &) const;
         void sendKeyDown(const IGameTime &, const int) const;
 

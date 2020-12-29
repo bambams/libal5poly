@@ -1,6 +1,6 @@
 /*
  * libal5poly is a game library abstraction library. xD
- * Copyright (C) 2011, 2012 Brandon McCaig
+ * Copyright (C) 2011, 2012, 2015, 2016, 2020 Brandon McCaig
  *
  * This file is part of libal5poly.
  *

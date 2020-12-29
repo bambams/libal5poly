@@ -1,0 +1,4 @@
+#!/bin/bash
+
+find include -name '*.h' -o -name '*.hpp'
+find src -name '*.c' -o -name '*.cpp'

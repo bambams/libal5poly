@@ -243,8 +243,8 @@ namespace al5poly
     {
         ALLEGRO_COLOR value = al_map_rgba(red, green, blue, alpha);
 
-        fprintf(stderr, "LIBAL5POLY DEBUG: {\"r\": %d, \"g\": %d, \"b\": %d, \"a\": %d} <=> %s\n",
-                (int)red, (int)green, (int)blue, (int)alpha, AssetManager::printColor(value));
+        //fprintf(stderr, "LIBAL5POLY DEBUG: {\"r\": %d, \"g\": %d, \"b\": %d, \"a\": %d} <=> %s\n",
+        //        (int)red, (int)green, (int)blue, (int)alpha, AssetManager::printColor(value));
 
         this->colors_.insert(std::make_pair(name, value));
 
@@ -295,7 +295,7 @@ namespace al5poly
             }
             else
             {
-                fprintf(stderr, "%s. Falling back on AL5POLY_ERROR_COLOR. ;)\n", msg.c_str());
+                //fprintf(stderr, "%s. Falling back on AL5POLY_ERROR_COLOR. ;)\n", msg.c_str());
                 return AL5POLY_ERROR_COLOR;
             }
         }
@@ -305,13 +305,13 @@ namespace al5poly
 
     const char * AssetManager::printColor(const std::string & name) const
     {
-fprintf(stderr, "LIBAL5POLY DEBUG: const char * AssetManager::printColor(const std::string & name) const was called.\n");
+//fprintf(stderr, "LIBAL5POLY DEBUG: const char * AssetManager::printColor(const std::string & name) const was called.\n");
         return AssetManager::printColor(this->getColor(name));
     }
 
     const char * AssetManager::printColor(ALLEGRO_COLOR color)
     {
-fprintf(stderr, "LIBAL5POLY DEBUG: const char * AssetManager::printColor(ALLEGRO_COLOR color) was called.\n");
+//fprintf(stderr, "LIBAL5POLY DEBUG: const char * AssetManager::printColor(ALLEGRO_COLOR color) was called.\n");
 
         static char buffer[50] = {0};
 

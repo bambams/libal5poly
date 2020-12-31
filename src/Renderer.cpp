@@ -56,6 +56,22 @@ namespace al5poly
         al_clear_to_color(color);
     }
 
+    void Renderer::paint(
+            ALLEGRO_COLOR color,
+            ALLEGRO_BITMAP_Ptr bitmap,
+            int x,
+            int y,
+            int flags) const
+    {
+        al_flip_display();
+
+        al_set_target_bitmap(al_get_backbuffer(this->display_.get()));
+
+        al_clear_to_color(color);
+
+        al_draw_bitmap(bitmap.get(), x, y, flags);
+    }
+
     void Renderer::render(
             const IGameTime & gameTime,
             const ICamera & camera,

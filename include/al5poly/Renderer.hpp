@@ -46,6 +46,13 @@ namespace al5poly
 
         void paint(void) const;
         void paint(ALLEGRO_COLOR) const;
+        void paint(
+                ALLEGRO_COLOR,
+                ALLEGRO_BITMAP_Ptr,
+                int = 0,
+                int = 0,
+                int = 0) const;
+
         void render(
                 const IGameTime &,
                 const ICamera &,

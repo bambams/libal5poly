@@ -52,6 +52,9 @@ void centerPlayer(
         const int,
         const al5poly::ALLEGRO_DISPLAY_Ptr);
 
+const int SCREEN_W = 1920;
+const int SCREEN_H = 1080;
+
 int main(int argc, char * argv[]) try
 {
     al5poly::ALLEGRO_DISPLAY_Ptr display;
@@ -72,6 +75,16 @@ int main(int argc, char * argv[]) try
     al5poly::Player player(loadAnimations(boxWidth, boxHeight));
     al5poly::Renderer renderer(display);
 
+    al5poly::ALLEGRO_BITMAP_Ptr bg1(createColoredBoxSprite(
+            SCREEN_W,
+            SCREEN_H,
+            al_map_rgb(0, 0, 255)));
+
+    al5poly::ALLEGRO_BITMAP_Ptr bg2(createColoredBoxSprite(
+            SCREEN_W,
+            SCREEN_H,
+            al_map_rgb(0, 255, 0)));
+
     centerPlayer(player, boxWidth, boxHeight, display);
 
     al_start_timer(timer.get());
@@ -91,6 +104,14 @@ int main(int argc, char * argv[]) try
 
             al5poly::IGameTime::Ptr gameTime(clock.getGameTime());
             int ticks = gameTime->getTicks();
+
+            if(ticks % 100 == 0)
+            {
+                al5poly::ALLEGRO_BITMAP_Ptr tmp = bg1;
+
+                bg1 = bg2;
+                bg2 = tmp;
+            }
 
             if(ticks == 400)
             {
@@ -139,7 +160,7 @@ int main(int argc, char * argv[]) try
                 direction = 3;
             else if(direction == 3 && camera.getY() <= -150)
                 direction = 0;
-            
+
             redraw = true;
         }
         else if(event.type == ALLEGRO_EVENT_KEY_DOWN &&
@@ -157,7 +178,7 @@ int main(int argc, char * argv[]) try
             try
             {
                 renderer.render(*clock.getGameTime(), camera, player);
-                renderer.paint();
+                renderer.paint(al_map_rgb(0, 0, 0), bg1);
             }
             catch(al5poly::IException & ex)
             {
@@ -221,7 +242,7 @@ void initializeAllegro5(
     al_set_new_display_flags(ALLEGRO_WINDOWED);
 
     al5poly::ALLEGRO_DISPLAY_Ptr d(
-            al_create_display(800, 600),
+            al_create_display(SCREEN_W, SCREEN_H),
             al_destroy_display);
 
     if(!d)

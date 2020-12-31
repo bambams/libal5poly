@@ -35,7 +35,7 @@ namespace al5poly
     class IRenderer
     {
     public:
-        virtual ~IRenderer(void) = 0;
+        virtual ~IRenderer(void);
 
         virtual void paint(void) const = 0;
 

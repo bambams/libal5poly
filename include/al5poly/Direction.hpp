@@ -25,9 +25,19 @@ namespace al5poly
 {
     enum Direction
     {
-        AL5POLY_DIRECTION_NONE,
-        AL5POLY_DIRECTION_LEFT,
-        AL5POLY_DIRECTION_RIGHT
+        AL5POLY_DIRECTION_NONE =   0,
+
+        AL5POLY_DIRECTION_UP =     1,
+        AL5POLY_DIRECTION_NORTH =  1,
+
+        AL5POLY_DIRECTION_RIGHT =  2,
+        AL5POLY_DIRECTION_EAST =   2,
+
+        AL5POLY_DIRECTION_DOWN =   3,
+        AL5POLY_DIRECTION_SOUTH =  3,
+
+        AL5POLY_DIRECTION_LEFT =   4,
+        AL5POLY_DIRECTION_WEST =   4
     };
 }
 

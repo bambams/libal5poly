@@ -285,7 +285,8 @@ namespace al5poly
                 name,
                 (unsigned char)red,
                 (unsigned char)green,
-                (unsigned char)blue);
+                (unsigned char)blue,
+                (unsigned char)alpha);
     }
 
     ALLEGRO_COLOR AssetManager::createColor(

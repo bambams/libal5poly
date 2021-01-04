@@ -29,14 +29,28 @@ namespace al5poly
                 const std::string & name,
                 const al5poly::IAnimation::Ptr & animation)
     {
-        this->animations_[name] = animation;
+        auto insertion = this->animations_.insert(std::make_pair(name, animation));
+
+        if (!insertion.second)
+        {
+            al5poly::AssetManagerException(std::string("Failed to add animation by key ") + name + ". Duplicate exists?").raise();
+        }
     }
 
     void AssetManager::addBitmap(
                 const std::string & name,
                 const al5poly::ALLEGRO_BITMAP_Ptr & bitmap)
     {
-        this->bitmaps_[name] = bitmap;
+        auto insertion = this->bitmaps_.insert(std::make_pair(name, bitmap));
+
+        if (!insertion.second)
+        {
+            al5poly::AssetManagerException(
+                    std::string("Failed to add bitmap by key ") +
+                            name +
+                            ". Duplicate exists?")
+                .raise();
+        }
     }
 
     IAnimation::Ptr AssetManager::getAnimation( const std::string & name) const
@@ -195,7 +209,7 @@ namespace al5poly
         IAnimation::Ptr animation(
                 new Animation(sprites));
 
-        this->animations_.insert(std::make_pair(name, animation));
+        this->addAnimation(name, animation);
 
         return animation;
     }
@@ -222,7 +236,7 @@ namespace al5poly
             al_convert_mask_to_alpha(bitmap.get(), AL5POLY_MAGIC_PINK);
         }
 
-        this->bitmaps_.insert(std::make_pair(name, bitmap));
+        this->addBitmap(name, bitmap);
 
         return bitmap;
     }
@@ -231,7 +245,16 @@ namespace al5poly
             const std::string & name,
             ALLEGRO_COLOR color)
     {
-        this->colors_.insert(std::make_pair(name, color));
+        auto insertion = this->colors_.insert(std::make_pair(name, color));
+
+        if (!insertion.second)
+        {
+            al5poly::AssetManagerException(
+                    std::string("Failed to add color by key ") +
+                            name +
+                            ". Duplicate exists?")
+                .raise();
+        }
     }
 
     ALLEGRO_COLOR AssetManager::createColor(
@@ -246,7 +269,7 @@ namespace al5poly
         //fprintf(stderr, "LIBAL5POLY DEBUG: {\"r\": %d, \"g\": %d, \"b\": %d, \"a\": %d} <=> %s\n",
         //        (int)red, (int)green, (int)blue, (int)alpha, AssetManager::printColor(value));
 
-        this->colors_.insert(std::make_pair(name, value));
+        this->addColor(name, value);
 
         return value;
     }
